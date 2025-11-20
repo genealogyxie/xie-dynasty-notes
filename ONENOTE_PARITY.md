@@ -1,0 +1,362 @@
+# OneNote Parity Gap Analysis
+
+This document tracks the gaps between our app and Microsoft OneNote, organized by priority.
+
+## Status Legend
+- ✅ Complete and tested
+- 🚧 In progress
+- ⏳ Planned
+- ❌ Not started
+
+---
+
+## P1: Visual Polish & Navigation (CRITICAL)
+
+### Design System
+- ❌ Migrate from shadcn/ui to Fluent UI v9
+- ❌ Implement Fluent design tokens (typography, spacing, colors, shadows)
+- ❌ Add light/dark/high-contrast theme support
+- ❌ Consistent spacing grid and elevation system
+- ❌ Fluent motion and transitions
+
+### Navigation & Layout
+- ❌ Notebook sidebar with color-coded tabs
+- ❌ Page list with thumbnails/previews
+- ❌ Quick search in header bar
+- ❌ Command palette (Ctrl+K)
+- ❌ Contextual toolbars that appear on selection
+- ❌ Breadcrumb navigation
+- ❌ Collapsible sections in sidebar
+
+### Accessibility
+- ❌ Full keyboard navigation (Tab, Arrow keys, Enter, Esc)
+- ❌ ARIA labels for all interactive elements
+- ❌ Screen reader support (Narrator, NVDA, JAWS)
+- ❌ Focus indicators and focus management
+- ❌ High contrast mode support
+- ❌ Keyboard shortcuts parity with OneNote
+
+---
+
+## P2: Canvas Page Model (CRITICAL)
+
+### Freeform Layout
+- ❌ Canvas-style pages (not just flowing document)
+- ❌ Movable text/media containers
+- ❌ Resizable containers with drag handles
+- ❌ Grid snapping and alignment guides
+- ❌ Multi-select containers (Shift+Click, Ctrl+Click)
+- ❌ Z-order management (bring to front/send to back)
+- ❌ Container anchoring and positioning
+
+### Implementation
+- ❌ TipTap NodeViews for positioned blocks
+- ❌ Drag-and-drop with visual feedback
+- ❌ Resize handles with constraints
+- ❌ Snap-to-grid with visual guides
+- ❌ Selection box for multi-select
+- ❌ Yjs sync for container positions/sizes
+
+---
+
+## P3: Inking System (HIGH PRIORITY)
+
+### Core Inking
+- ❌ Pressure-sensitive pen input
+- ❌ Tilt support for shading
+- ❌ Pen tool (various sizes and colors)
+- ❌ Highlighter tool (semi-transparent)
+- ❌ Eraser tool (stroke and point eraser)
+- ❌ Lasso selection tool
+- ❌ Ink smoothing and stroke optimization
+
+### Advanced Features
+- ❌ Shape recognition (circles, squares, arrows)
+- ❌ Ink-to-text conversion
+- ❌ Ink-to-shape conversion
+- ❌ Ink layering with content
+- ❌ Ink replay/animation
+- ❌ Yjs sync for ink strokes
+- ❌ GPU-accelerated rendering
+
+---
+
+## P4: Attachments & PDF (HIGH PRIORITY)
+
+### PDF Printout
+- ❌ Insert PDF as printout (paged images)
+- ❌ PDF.js integration for rendering
+- ❌ Annotate/ink on PDF pages
+- ❌ OCR text overlay for searchability
+- ❌ Page reordering within printout
+- ❌ Extract pages from printout
+
+### File Attachments
+- ❌ Attach any file type
+- ❌ Thumbnail generation for images/PDFs
+- ❌ Preview pane for common formats
+- ❌ Open in default application
+- ❌ S3-compatible storage integration
+- ❌ Drag-and-drop file upload
+- ❌ Paste images from clipboard
+
+### Media
+- ❌ Image resize/crop in-place
+- ❌ Audio recording with timeline anchors
+- ❌ Video embedding
+- ❌ Screen clipping tool
+
+---
+
+## P5: Search (HIGH PRIORITY)
+
+### Global Search
+- ❌ Fast full-text search across all content
+- ❌ Search in titles, body text, tags
+- ❌ OCR text search in images
+- ❌ PDF content search
+- ❌ Handwriting search (if feasible)
+- ❌ Search filters (notebook, author, date, type)
+- ❌ Search highlighting in results
+- ❌ Recent searches
+
+### Implementation
+- ❌ Meilisearch or Postgres FTS integration
+- ❌ Real-time indexing on content changes
+- ❌ OCR pipeline with Tesseract
+- ❌ Search result ranking
+- ❌ Instant search (as-you-type)
+
+---
+
+## P6: History & Versioning (MEDIUM PRIORITY)
+
+### Version History
+- ❌ Per-page timeline view
+- ❌ Visual diff between versions
+- ❌ Restore to previous version
+- ❌ Per-block history (if feasible)
+- ❌ Snapshot compression and pruning
+- ❌ Cross-session undo depth
+
+### Recycle Bin
+- ❌ Soft delete for pages/sections/notebooks
+- ❌ Recycle bin UI
+- ❌ Restore from recycle bin
+- ❌ Permanent delete
+- ❌ Auto-purge after 60 days
+
+---
+
+## P7: Collaboration (MEDIUM PRIORITY)
+
+### Real-time Collaboration
+- ✅ Yjs CRDT for conflict-free sync
+- ✅ Collaborative cursors with names/colors
+- ❌ Presence indicators (who's viewing)
+- ❌ Active editors list
+- ❌ Typing indicators
+
+### Comments & Mentions
+- ❌ Comment threads on content
+- ❌ @mentions with notifications
+- ❌ Resolve/unresolve comments
+- ❌ Comment notifications
+
+### Permissions & Sharing
+- ❌ Per-workspace permissions
+- ❌ Per-notebook permissions
+- ❌ Per-section permissions
+- ❌ Per-page permissions
+- ❌ Role-based access (owner, editor, viewer)
+- ❌ Share links with expiration
+- ❌ Invite via email
+- ❌ Public sharing with password
+
+---
+
+## P8: Import/Export & Capture (MEDIUM PRIORITY)
+
+### Export
+- ❌ Export to Markdown
+- ❌ Export to HTML
+- ❌ Export to PDF
+- ❌ Export to Word (.docx)
+- ❌ Bulk export (entire notebook)
+
+### Import
+- ❌ Import from Markdown
+- ❌ Import from HTML
+- ❌ Import from Evernote (.enex)
+- ❌ Import from OneNote (best effort)
+
+### Web Clipper
+- ❌ Chrome/Edge extension
+- ❌ Clip full page
+- ❌ Clip selection
+- ❌ Clip screenshot
+- ❌ Simplified article view
+
+### Quick Capture
+- ❌ Desktop tray icon
+- ❌ Global keyboard shortcut
+- ❌ Quick note window
+- ❌ Screenshot to page
+- ❌ Audio quick capture
+
+---
+
+## P9: Platform Packaging (HIGH PRIORITY)
+
+### Windows
+- ❌ MSVC build (not GNU cross-compile)
+- ❌ MSI installer with WebView2 bootstrapper
+- ❌ Code signing certificate
+- ❌ Auto-update mechanism
+- ❌ ARM64 build
+- ❌ Start menu integration
+- ❌ File associations (.one files)
+
+### macOS
+- ❌ Notarized DMG
+- ❌ Code signing
+- ❌ Auto-update
+- ❌ ARM64 (Apple Silicon) build
+- ❌ Universal binary (x64 + ARM64)
+
+### Linux
+- ❌ AppImage
+- ❌ .deb package
+- ❌ .rpm package
+- ❌ Flatpak
+- ❌ Snap
+
+### Mobile
+- ❌ Android APK signed for Play Store
+- ❌ iOS IPA signed for App Store
+- ❌ Pen integration (Android/iPad)
+- ❌ Camera integration
+- ❌ Share intents
+
+### CI/CD
+- ❌ GitHub Actions for all platforms
+- ❌ Automated builds on push
+- ❌ Release artifacts
+- ❌ Version bumping
+
+---
+
+## P10: Performance & Quality (ONGOING)
+
+### Performance Budgets
+- ❌ Cold start < 2s (web/desktop)
+- ❌ Editor ready < 1s
+- ❌ Typing latency < 50ms
+- ❌ Ink latency < 10ms
+- ❌ Search results < 200ms
+- ❌ Page load < 500ms
+
+### Optimization
+- ❌ Block-level Yjs documents (not single huge doc)
+- ❌ Lazy load pages
+- ❌ Virtualize long lists
+- ❌ Throttle decorations and cursors
+- ❌ Snapshot compaction
+- ❌ Ink rendering optimization
+- ❌ Image lazy loading and thumbnails
+
+### Testing
+- ❌ Unit tests for core logic
+- ❌ Integration tests for API
+- ❌ E2E tests with Playwright
+- ❌ Offline/online transition tests
+- ❌ Concurrent editing tests
+- ❌ Performance regression tests
+- ❌ Accessibility audit
+
+---
+
+## Additional Features
+
+### Templates & Customization
+- ❌ Page templates (meeting notes, to-do, etc.)
+- ❌ Custom templates
+- ❌ Page backgrounds (ruled, grid, blank)
+- ❌ Section groups
+- ❌ Notebook colors
+
+### Organization
+- ❌ Tags with autocomplete
+- ❌ Favorites/pinned pages
+- ❌ Recent pages
+- ❌ Page links (wiki-style)
+- ❌ Table of contents generation
+
+### Editor Features
+- ❌ Tables with advanced formatting
+- ❌ Checkboxes/to-do items with completion tracking
+- ❌ Math equations (LaTeX)
+- ❌ Code syntax highlighting (more languages)
+- ❌ Embedded web content (iframes)
+- ❌ Symbols and special characters picker
+
+### Smart Features
+- ❌ Smart paste (detect and format)
+- ❌ Auto-save indicators
+- ❌ Conflict resolution UI
+- ❌ Offline mode banner
+- ❌ Sync status indicators
+- ❌ Background sync
+
+---
+
+## Current Status Summary
+
+### What Works
+- ✅ Basic rich text editing (bold, italic, headings, lists)
+- ✅ Tables and code blocks
+- ✅ Yjs real-time collaboration
+- ✅ Collaborative cursors
+- ✅ Hierarchical structure (workspaces → notebooks → sections → pages)
+- ✅ Offline-first with IndexedDB
+- ✅ JWT authentication
+- ✅ Basic CRUD APIs
+
+### Critical Gaps
+1. **UI Polish**: Using basic shadcn/ui, not Fluent UI v9
+2. **Page Model**: Linear document, not canvas with movable containers
+3. **Inking**: No pen/ink support at all
+4. **PDF/Attachments**: No PDF printout or file attachment system
+5. **Search**: No global search or OCR
+6. **History**: No version history UI or recycle bin
+7. **Packaging**: Cross-compiled GNU .exe with DLL issues, no proper installers
+8. **Accessibility**: Minimal keyboard shortcuts, no screen reader support
+9. **Performance**: Not optimized, no performance budgets
+
+### Estimated Effort
+- **P1 (Visual Polish)**: 2-3 weeks
+- **P2 (Canvas Model)**: 3-4 weeks
+- **P3 (Inking)**: 4-5 weeks
+- **P4 (PDF/Attachments)**: 2-3 weeks
+- **P5 (Search)**: 2 weeks
+- **P6 (History)**: 1-2 weeks
+- **P7 (Collaboration)**: 2 weeks
+- **P8 (Import/Export)**: 2-3 weeks
+- **P9 (Packaging)**: 1-2 weeks
+- **P10 (Performance)**: Ongoing
+
+**Total**: ~20-30 weeks for full OneNote parity
+
+---
+
+## Next Steps
+
+1. Start with P1 (Visual Polish) - migrate to Fluent UI v9
+2. Implement P9 (Packaging) - proper Windows MSVC installer
+3. Work on P2 (Canvas Model) - foundational architecture
+4. Add P3 (Inking) - core differentiator
+5. Continue with P4-P8 based on user feedback
+
+---
+
+Last Updated: November 20, 2025
