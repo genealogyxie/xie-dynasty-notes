@@ -1,0 +1,14 @@
+{
+  "appId": "com.xiedynasty.notes",
+  "appName": "Xie Dynasty Notes",
+  "webDir": "../web/dist",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
