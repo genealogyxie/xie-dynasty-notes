@@ -393,6 +393,11 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Contextual ribbon (tab-based toolbar with Home, Insert, Draw, View tabs)
 - ✅ Search filters (filter by notebooks, content types, authors, date range)
 - ✅ Recent searches (localStorage persistence, click to re-run, clear all)
+- ✅ Notebook selector (dropdown with color indicators, create/manage actions)
+- ✅ Section selector (hierarchical sections and groups, create action)
+- ✅ Page hierarchy tree (expandable tree view with notebooks/sections/pages)
+- ✅ Tag cloud (visual cloud with size based on usage, click to filter)
+- ✅ Search results list (highlighted matches, metadata, badges)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
