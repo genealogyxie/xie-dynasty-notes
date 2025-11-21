@@ -314,6 +314,10 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Page info panel (PageInfoPanel with metadata and statistics)
 - ✅ Quick notes (QuickNotes component with floating button)
 - ✅ Page protection (PageProtection component with password and access controls)
+- ✅ Notification center (NotificationCenter with drawer UI, badge count, mark as read)
+- ✅ Activity log (ActivityLog with timeline view, colored icons, user avatars)
+- ✅ File attachments manager (FileAttachmentsManager with drag-and-drop upload)
+- ✅ Print preview (PrintPreview with page size, orientation, header/footer options)
 
 ---
 
@@ -367,6 +371,15 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Drawing tools panel (pen, highlighter, eraser, shapes, color picker, brush size)
 - ✅ Quick notes (rapid note capture with floating button and list view)
 - ✅ Page protection (password protection, prevent editing/deleting)
+- ✅ Notification center (drawer UI with badge count, mark as read, time formatting)
+- ✅ Activity log (timeline view with colored icons, user avatars, activity types)
+- ✅ File attachments manager (drag-and-drop upload, file type icons, download/delete)
+- ✅ Print preview (page size, orientation, header/footer, zoom controls)
+- ✅ Zoom controls (slider with presets, 50%-200% range)
+- ✅ Full-screen mode (browser API with state tracking)
+- ✅ Reading mode (font customization, line spacing, distraction-free)
+- ✅ Page outline navigator (auto-detect headings, smooth scroll, active tracking)
+- ✅ Focus mode (distraction-free editing with minimal UI)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
