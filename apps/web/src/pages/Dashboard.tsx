@@ -11,9 +11,11 @@ import { RecycleBin } from '../components/RecycleBin';
 import { ExportDialog } from '../components/ExportDialog';
 import { ImportDialog } from '../components/ImportDialog';
 import { PageTemplates } from '../components/PageTemplates';
+import { PageBackgrounds } from '../components/PageBackgrounds';
+import { SyncStatusIndicator } from '../components/SyncStatusIndicator';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
-import { LogOut, Search, History, Trash2, Download, Upload, FileText } from 'lucide-react';
+import { LogOut, Search, History, Trash2, Download, Upload, FileText, Palette } from 'lucide-react';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -24,6 +26,8 @@ export function Dashboard() {
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
   const [importDialogOpen, setImportDialogOpen] = useState(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
+  const [backgroundsOpen, setBackgroundsOpen] = useState(false);
+  const [syncStatus] = useState<'synced' | 'syncing' | 'offline' | 'error'>('synced');
   const {
     user,
     currentPage,
@@ -128,10 +132,18 @@ export function Dashboard() {
           console.log('Selected template:', template);
         }}
       />
+      <PageBackgrounds
+        open={backgroundsOpen}
+        onClose={() => setBackgroundsOpen(false)}
+        onSelectBackground={(background) => {
+          console.log('Selected background:', background);
+        }}
+      />
       <div className="h-screen flex flex-col">
         <header className="border-b bg-white px-4 py-2 flex items-center justify-between">
           <h1 className="text-xl font-bold text-blue-600">Xie Dynasty Notes</h1>
           <div className="flex items-center gap-2">
+            <SyncStatusIndicator status={syncStatus} lastSyncTime={new Date()} />
             <Button variant="ghost" size="sm" onClick={() => setGlobalSearchOpen(true)}>
               <Search className="h-4 w-4 mr-2" />
               Search
@@ -146,6 +158,10 @@ export function Dashboard() {
             </Button>
             {currentPage && (
               <>
+                <Button variant="ghost" size="sm" onClick={() => setBackgroundsOpen(true)}>
+                  <Palette className="h-4 w-4 mr-2" />
+                  Background
+                </Button>
                 <Button variant="ghost" size="sm" onClick={() => setVersionHistoryOpen(true)}>
                   <History className="h-4 w-4 mr-2" />
                   History
