@@ -5,13 +5,15 @@ import { workspacesAPI } from '../lib/api';
 import { Sidebar } from '../components/Sidebar';
 import { Editor } from '../components/Editor';
 import { CommandPalette } from '../components/CommandPalette';
+import { GlobalSearch } from '../components/GlobalSearch';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
-import { LogOut } from 'lucide-react';
+import { LogOut, Search } from 'lucide-react';
 
 export function Dashboard() {
   const navigate = useNavigate();
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
   const {
     user,
     currentPage,
@@ -30,6 +32,12 @@ export function Dashboard() {
       key: 'p',
       ctrl: true,
       handler: () => setCommandPaletteOpen(true),
+    },
+    {
+      key: 'f',
+      ctrl: true,
+      shift: true,
+      handler: () => setGlobalSearchOpen(true),
     },
   ]);
 
@@ -73,10 +81,18 @@ export function Dashboard() {
         open={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
       />
+      <GlobalSearch
+        open={globalSearchOpen}
+        onClose={() => setGlobalSearchOpen(false)}
+      />
       <div className="h-screen flex flex-col">
         <header className="border-b bg-white px-4 py-2 flex items-center justify-between">
           <h1 className="text-xl font-bold text-blue-600">Xie Dynasty Notes</h1>
           <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm" onClick={() => setGlobalSearchOpen(true)}>
+              <Search className="h-4 w-4 mr-2" />
+              Search
+            </Button>
             <span className="text-sm text-gray-600">{user.email}</span>
             <Button variant="ghost" size="sm" onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />
@@ -99,7 +115,7 @@ export function Dashboard() {
                 <div className="text-center">
                   <h2 className="text-2xl font-semibold mb-2">Welcome to Xie Dynasty Notes</h2>
                   <p>Create a notebook and start taking notes</p>
-                  <p className="text-xs mt-4">Press Ctrl+K to search</p>
+                  <p className="text-xs mt-4">Press Ctrl+K for quick navigation, Ctrl+Shift+F for global search</p>
                 </div>
               </div>
             )}
