@@ -408,6 +408,11 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Page move dialog (move pages between notebooks/sections with validation)
 - ✅ Page copy dialog (copy pages with new name, include attachments/subpages options)
 - ✅ Page merge dialog (merge pages with append/prepend/replace modes)
+- ✅ Section info panel (stats, details, recent pages list, add/edit/delete actions)
+- ✅ Page link dialog (generate shareable links with options, copy to clipboard)
+- ✅ Page email dialog (email pages with to/subject/message, attachment options)
+- ✅ Page print settings dialog (page setup, headers/footers, color mode)
+- ✅ Notebook sharing settings (add users, manage roles, remove access)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
