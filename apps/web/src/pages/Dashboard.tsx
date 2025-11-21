@@ -14,9 +14,12 @@ import { PageTemplates } from '../components/PageTemplates';
 import { PageBackgrounds } from '../components/PageBackgrounds';
 import { SyncStatusIndicator } from '../components/SyncStatusIndicator';
 import { OfflineBanner } from '../components/OfflineBanner';
+import { PresenceIndicators } from '../components/PresenceIndicators';
+import { SymbolsPicker } from '../components/SymbolsPicker';
+import { NotebookColorPicker } from '../components/NotebookColorPicker';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
-import { LogOut, Search, History, Trash2, Download, Upload, FileText, Palette } from 'lucide-react';
+import { LogOut, Search, History, Trash2, Download, Upload, FileText, Palette, AtSign } from 'lucide-react';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -28,6 +31,8 @@ export function Dashboard() {
   const [importDialogOpen, setImportDialogOpen] = useState(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [backgroundsOpen, setBackgroundsOpen] = useState(false);
+  const [symbolsOpen, setSymbolsOpen] = useState(false);
+  const [notebookColorOpen, setNotebookColorOpen] = useState(false);
   const [syncStatus] = useState<'synced' | 'syncing' | 'offline' | 'error'>('synced');
   const {
     user,
@@ -141,14 +146,37 @@ export function Dashboard() {
           console.log('Selected background:', background);
         }}
       />
+      <SymbolsPicker
+        open={symbolsOpen}
+        onClose={() => setSymbolsOpen(false)}
+        onSelectSymbol={(symbol) => {
+          console.log('Selected symbol:', symbol);
+        }}
+      />
+      <NotebookColorPicker
+        open={notebookColorOpen}
+        onClose={() => setNotebookColorOpen(false)}
+        onSelectColor={(color) => {
+          console.log('Selected color:', color);
+        }}
+      />
       <div className="h-screen flex flex-col">
         <header className="border-b bg-white px-4 py-2 flex items-center justify-between">
           <h1 className="text-xl font-bold text-blue-600">Xie Dynasty Notes</h1>
           <div className="flex items-center gap-2">
+            <PresenceIndicators 
+              users={[
+                { id: '1', name: 'Current User', email: user.email, isActive: true, color: 'colorful' },
+              ]} 
+            />
             <SyncStatusIndicator status={syncStatus} lastSyncTime={new Date()} />
             <Button variant="ghost" size="sm" onClick={() => setGlobalSearchOpen(true)}>
               <Search className="h-4 w-4 mr-2" />
               Search
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => setSymbolsOpen(true)}>
+              <AtSign className="h-4 w-4 mr-2" />
+              Symbols
             </Button>
             <Button variant="ghost" size="sm" onClick={() => setTemplatesOpen(true)}>
               <FileText className="h-4 w-4 mr-2" />
