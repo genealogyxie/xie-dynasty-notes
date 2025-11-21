@@ -185,8 +185,10 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ⏳ Bulk export (entire notebook)
 
 ### Import
-- ⏳ Import from Markdown
-- ⏳ Import from HTML
+- ✅ Import from Markdown
+- ✅ Import from HTML
+- ✅ Import from Plain Text
+- ✅ Import from JSON
 - ⏳ Import from Evernote (.enex)
 - ⏳ Import from OneNote (best effort)
 
@@ -279,18 +281,18 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 ## Additional Features
 
 ### Templates & Customization
-- ❌ Page templates (meeting notes, to-do, etc.)
-- ❌ Custom templates
-- ❌ Page backgrounds (ruled, grid, blank)
-- ❌ Section groups
-- ❌ Notebook colors
+- ✅ Page templates (meeting notes, to-do, etc.)
+- 🚧 Custom templates (basic templates implemented)
+- ⏳ Page backgrounds (ruled, grid, blank)
+- ⏳ Section groups
+- ⏳ Notebook colors
 
 ### Organization
-- ❌ Tags with autocomplete
-- ❌ Favorites/pinned pages
-- ❌ Recent pages
-- ❌ Page links (wiki-style)
-- ❌ Table of contents generation
+- ✅ Tags with autocomplete (TagsInput component)
+- ⏳ Favorites/pinned pages
+- ⏳ Recent pages
+- ⏳ Page links (wiki-style)
+- ⏳ Table of contents generation
 
 ### Editor Features
 - ❌ Tables with advanced formatting
@@ -329,6 +331,9 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Version history timeline with restore
 - ✅ Recycle bin with soft delete
 - ✅ Export to Markdown, HTML, JSON, Plain Text
+- ✅ Import from Markdown, HTML, JSON, Plain Text
+- ✅ Page templates (Meeting Notes, To-Do List, Daily Notes)
+- ✅ Tags input component with keyboard support
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
