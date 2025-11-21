@@ -389,6 +389,10 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Formatting toolbar (heading/font size dropdowns, text formatting, alignment, lists, insert)
 - ✅ Quick access toolbar (save, undo, redo, favorite, share, print with more actions menu)
 - ✅ Page versions dropdown (recent 5 versions with view/restore actions)
+- ✅ Page list with thumbnails (grid/list view modes, context menu actions)
+- ✅ Contextual ribbon (tab-based toolbar with Home, Insert, Draw, View tabs)
+- ✅ Search filters (filter by notebooks, content types, authors, date range)
+- ✅ Recent searches (localStorage persistence, click to re-run, clear all)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
