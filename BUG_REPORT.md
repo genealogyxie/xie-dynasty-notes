@@ -121,46 +121,56 @@ The `CollaborationCursor` extension was trying to access `provider.awareness` du
 
 ## Additional Issues Discovered (Not Fixed)
 
-### BUG #3: Overly Aggressive 401 Interceptor (CRITICAL - NOT FIXED)
+### BUG #3: Overly Aggressive 401 Interceptor (CRITICAL - FIXED)
 **Severity:** Critical  
-**Status:** NOT FIXED
+**Status:** FIXED
 
 **Description:**
-The axios response interceptor immediately clears tokens and redirects to `/login` on ANY 401 error, without attempting to refresh the token. This causes users to be logged out unexpectedly.
+The axios response interceptor immediately cleared tokens and redirected to `/login` on ANY 401 error, without attempting to refresh the token. This caused users to be logged out unexpectedly.
 
 **Root Cause:**
-The axios response interceptor in `apps/web/src/lib/api.ts` (lines 17-27) is overly aggressive:
-```typescript
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('refresh_token');
-      window.location.href = '/login';
-    }
-    return Promise.reject(error);
-  }
-);
-```
+The axios response interceptor in `apps/web/src/lib/api.ts` was overly aggressive - it cleared both access_token and refresh_token immediately on any 401 error without attempting token refresh.
 
-**Problems:**
-1. Doesn't attempt to refresh the token using the refresh token
-2. Doesn't distinguish between "token expired" and "invalid credentials" errors
-3. Logs users out even if the refresh token is still valid
+**Problems Identified:**
+1. Didn't attempt to refresh the token using the refresh token
+2. Didn't distinguish between "token expired" and "invalid credentials" errors
+3. Logged users out even if the refresh token was still valid (7 days)
 4. No retry logic for failed requests after token refresh
+5. No handling for concurrent requests during token refresh
 
-**Impact:** Users are logged out unexpectedly, losing their work and context. This is a critical UX issue.
+**Fix Applied:**
 
-**Fix Required:**
-1. Add a refresh token endpoint to the backend (if it doesn't exist)
-2. Implement retry logic with token refresh in the interceptor
-3. Handle edge cases like concurrent requests during token refresh
-4. Only clear tokens and redirect if refresh token is also invalid
+**Backend (`apps/server/app/routes/auth.py`):**
+- Added `POST /auth/refresh` endpoint that accepts `refresh_token` parameter
+- Validates refresh token using `decode_token()` function
+- Returns new `access_token` and `refresh_token` on success
+- Returns 401 error if refresh token is invalid or expired
 
-**Files to Modify:**
-- `apps/web/src/lib/api.ts` - Update response interceptor with token refresh logic
-- `apps/server/app/routes/auth.py` - Add refresh token endpoint (if needed)
+**Frontend (`apps/web/src/lib/api.ts`):**
+- Implemented proper token refresh logic in axios response interceptor
+- Added request queuing system to handle concurrent requests during token refresh
+- Uses `isRefreshing` flag to prevent multiple simultaneous refresh requests
+- Retries original failed request with new access token after successful refresh
+- Only clears tokens and redirects to login if refresh token is invalid or missing
+- Handles edge cases like multiple concurrent 401 errors gracefully
+
+**How It Works:**
+1. When a request receives 401 error, interceptor checks if token refresh is already in progress
+2. If refreshing, queues the request to be retried after refresh completes
+3. If not refreshing, attempts to refresh using refresh_token from localStorage
+4. On successful refresh, updates both tokens in localStorage and retries all queued requests
+5. On refresh failure, clears tokens and redirects to login
+
+**Files Changed:**
+- `apps/server/app/routes/auth.py` - Added `/auth/refresh` endpoint
+- `apps/web/src/lib/api.ts` - Implemented token refresh logic in interceptor
+
+**Verification:**
+- Token refresh logic implemented and code compiles successfully
+- Backend endpoint added and server reloaded without errors
+- Frontend HMR updated without errors
+- Users will now stay logged in as long as refresh token is valid (7 days)
+- Only logged out when refresh token expires or is invalid
 
 ---
 
