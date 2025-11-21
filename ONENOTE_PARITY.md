@@ -398,6 +398,11 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Page hierarchy tree (expandable tree view with notebooks/sections/pages)
 - ✅ Tag cloud (visual cloud with size based on usage, click to filter)
 - ✅ Search results list (highlighted matches, metadata, badges)
+- ✅ Page preview (full-screen overlay with HTML rendering, close/maximize)
+- ✅ Color palette picker (standard/theme/custom tabs, 62+ colors, hex input)
+- ✅ Page settings panel (editor/layout settings with dropdowns, save action)
+- ✅ Collaboration status bar (online count, viewers/editors, avatar groups)
+- ✅ Quick note capture dialog (rapid note creation with notebook/section selectors)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
