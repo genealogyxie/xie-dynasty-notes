@@ -413,6 +413,11 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Page email dialog (email pages with to/subject/message, attachment options)
 - ✅ Page print settings dialog (page setup, headers/footers, color mode)
 - ✅ Notebook sharing settings (add users, manage roles, remove access)
+- ✅ Page rename dialog (rename pages with validation, auto-focus input)
+- ✅ Notebook create dialog (name, description, 20 color options)
+- ✅ Section create dialog (name, notebook selector, optional section group)
+- ✅ Page delete confirmation dialog (recycle bin option, subpages/attachments count)
+- ✅ Bulk operations panel (move, copy, add tags, delete selected pages)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
