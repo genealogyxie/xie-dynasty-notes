@@ -295,20 +295,25 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Table of contents generation (TableOfContents component)
 
 ### Editor Features
-- 🚧 Tables with advanced formatting (basic tables implemented)
+- ✅ Tables with advanced formatting (TableEditor component with dynamic rows/cols, border styles, headers)
 - ✅ Checkboxes/to-do items with completion tracking (TaskList component)
 - ✅ Math equations (LaTeX) (MathEquation component with 8 examples)
 - 🚧 Code syntax highlighting (more languages)
 - ✅ Embedded web content (iframes) (EmbedContent component)
 - ✅ Symbols and special characters picker (SymbolsPicker with 100+ symbols)
+- ✅ Audio recording (AudioRecorder component with waveform visualization)
 
 ### Smart Features
 - ✅ Smart paste (detect and format) (SmartPaste component - detects URLs, emails, phone, dates, code, tables, lists)
 - ✅ Auto-save indicators (SyncStatusIndicator component)
-- ⏳ Conflict resolution UI
+- ✅ Conflict resolution UI (ConflictResolution component with side-by-side comparison)
 - ✅ Offline mode banner (OfflineBanner component)
 - ✅ Sync status indicators (SyncStatusIndicator component)
 - 🚧 Background sync (Yjs handles this)
+- ✅ Keyboard shortcuts help (KeyboardShortcutsHelp with 40+ shortcuts)
+- ✅ Page info panel (PageInfoPanel with metadata and statistics)
+- ✅ Quick notes (QuickNotes component with floating button)
+- ✅ Page protection (PageProtection component with password and access controls)
 
 ---
 
@@ -354,6 +359,14 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Math equations (LaTeX editor with 8 examples)
 - ✅ Smart paste (auto-detect URLs, emails, phone, dates, code, tables, lists)
 - ✅ Embed content (YouTube, Google Maps, Spotify, Twitter iframes)
+- ✅ Table editor (advanced formatting with dynamic rows/cols, border styles, headers)
+- ✅ Conflict resolution (side-by-side version comparison with merge options)
+- ✅ Audio recorder (voice notes with waveform visualization, playback controls)
+- ✅ Keyboard shortcuts help (40+ shortcuts across 6 categories)
+- ✅ Page info panel (metadata, statistics, collaborators, tags)
+- ✅ Drawing tools panel (pen, highlighter, eraser, shapes, color picker, brush size)
+- ✅ Quick notes (rapid note capture with floating button and list view)
+- ✅ Page protection (password protection, prevent editing/deleting)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
