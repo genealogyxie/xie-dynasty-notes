@@ -208,22 +208,27 @@ Warning: A component is changing an uncontrolled value to be controlled.
 - ✅ User state restoration on page reload
 - ✅ Workspace loading
 - ✅ Notebook creation
+- ✅ Notebook creation with XSS attempt (HTML/JS properly escaped)
 - ✅ Section creation dialog
 - ✅ Page creation (backend succeeds)
 - ✅ Page loading in Editor (fixed crash)
 - ✅ Editor toolbar functionality
-- ✅ Command palette (Ctrl+K)
-- ✅ Global search (Ctrl+Shift+F)
+- ✅ Page editing and typing content
+- ✅ Content persistence via IndexedDB (Yjs working correctly)
+- ✅ Page switching without losing content
+- ✅ Rapid double-clicks on create buttons (no duplicate requests)
+- ✅ Command palette (Ctrl+K) - working correctly
+- ✅ Global search (Ctrl+Shift+F) - working correctly
+- ✅ XSS protection in notebook names - working correctly
 
-**Tests Not Performed (Due to Time Constraints):**
-- Page editing and content persistence
+**Tests Not Performed:**
 - Multi-tab consistency
-- Token tampering and security
-- Rapid double-clicks and debouncing
-- XSS vulnerabilities in titles/names
-- Delete cascades and UI reconciliation
-- Keyboard navigation
+- Token expiration and refresh flows
+- Delete operations (not implemented in UI yet)
 - Error handling edge cases
+- Network throttling and offline mode
+- Long names/emoji in titles
+- Cascading deletes
 
 ---
 
@@ -255,6 +260,25 @@ Warning: A component is changing an uncontrolled value to be controlled.
 
 ---
 
+## Testing Results Summary
+
+**What Works Well:**
+- ✅ Authentication (registration, login, token persistence)
+- ✅ User state restoration on page reload
+- ✅ Workspace, notebook, section, and page CRUD operations
+- ✅ Editor loading and functionality (formatting toolbar)
+- ✅ Content persistence via IndexedDB (offline-first architecture)
+- ✅ Page switching without data loss
+- ✅ XSS protection (HTML/JS properly escaped in names)
+- ✅ Keyboard shortcuts (Ctrl+K command palette, Ctrl+Shift+F global search)
+- ✅ No debouncing issues with rapid clicks
+
+**What Doesn't Work:**
+- ❌ **BUG #3 (CRITICAL)**: Overly aggressive 401 interceptor logs users out without attempting token refresh
+- ⚠️ **Content not saved to backend**: Editor only saves to IndexedDB, not to backend database (by design for offline-first, but needs WebSocket server for sync)
+- ⚠️ **WebSocket errors (403)**: Backend doesn't have WebSocket server implementation for real-time collaboration
+- ⚠️ **Delete operations**: Not implemented in UI yet (no delete buttons/options visible)
+
 ## Conclusion
 
 Three critical bugs were identified and fixed:
@@ -265,4 +289,4 @@ Three critical bugs were identified and fixed:
 One critical bug remains unfixed:
 - **BUG #3**: Overly aggressive 401 interceptor needs token refresh logic
 
-The application is now significantly more stable and provides better UX. Core functionality (auth, CRUD operations, page editing) now works reliably. Further testing is recommended to discover additional bugs and implement token refresh logic.
+The application is now significantly more stable and provides better UX. Core functionality (auth, CRUD operations, page editing) now works reliably. The offline-first architecture with IndexedDB persistence is working as designed. The main remaining issue is implementing token refresh logic to prevent unexpected logouts.
