@@ -13,6 +13,7 @@ import { ImportDialog } from '../components/ImportDialog';
 import { PageTemplates } from '../components/PageTemplates';
 import { PageBackgrounds } from '../components/PageBackgrounds';
 import { SyncStatusIndicator } from '../components/SyncStatusIndicator';
+import { OfflineBanner } from '../components/OfflineBanner';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
 import { LogOut, Search, History, Trash2, Download, Upload, FileText, Palette } from 'lucide-react';
@@ -91,6 +92,7 @@ export function Dashboard() {
 
   return (
     <>
+      <OfflineBanner />
       <CommandPalette
         open={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
