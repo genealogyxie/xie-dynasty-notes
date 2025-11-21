@@ -8,9 +8,10 @@ import { CommandPalette } from '../components/CommandPalette';
 import { GlobalSearch } from '../components/GlobalSearch';
 import { VersionHistory } from '../components/VersionHistory';
 import { RecycleBin } from '../components/RecycleBin';
+import { ExportDialog } from '../components/ExportDialog';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
-import { LogOut, Search, History, Trash2 } from 'lucide-react';
+import { LogOut, Search, History, Trash2, Download } from 'lucide-react';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export function Dashboard() {
   const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
   const [versionHistoryOpen, setVersionHistoryOpen] = useState(false);
   const [recycleBinOpen, setRecycleBinOpen] = useState(false);
+  const [exportDialogOpen, setExportDialogOpen] = useState(false);
   const {
     user,
     currentPage,
@@ -100,6 +102,14 @@ export function Dashboard() {
         open={recycleBinOpen}
         onClose={() => setRecycleBinOpen(false)}
       />
+      {currentPage && (
+        <ExportDialog
+          open={exportDialogOpen}
+          onClose={() => setExportDialogOpen(false)}
+          pageTitle={currentPage.title}
+          pageContent="Page content would be here"
+        />
+      )}
       <div className="h-screen flex flex-col">
         <header className="border-b bg-white px-4 py-2 flex items-center justify-between">
           <h1 className="text-xl font-bold text-blue-600">Xie Dynasty Notes</h1>
@@ -109,10 +119,16 @@ export function Dashboard() {
               Search
             </Button>
             {currentPage && (
-              <Button variant="ghost" size="sm" onClick={() => setVersionHistoryOpen(true)}>
-                <History className="h-4 w-4 mr-2" />
-                History
-              </Button>
+              <>
+                <Button variant="ghost" size="sm" onClick={() => setVersionHistoryOpen(true)}>
+                  <History className="h-4 w-4 mr-2" />
+                  History
+                </Button>
+                <Button variant="ghost" size="sm" onClick={() => setExportDialogOpen(true)}>
+                  <Download className="h-4 w-4 mr-2" />
+                  Export
+                </Button>
+              </>
             )}
             <Button variant="ghost" size="sm" onClick={() => setRecycleBinOpen(true)}>
               <Trash2 className="h-4 w-4 mr-2" />
