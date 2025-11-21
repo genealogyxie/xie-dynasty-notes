@@ -380,6 +380,10 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Reading mode (font customization, line spacing, distraction-free)
 - ✅ Page outline navigator (auto-detect headings, smooth scroll, active tracking)
 - ✅ Focus mode (distraction-free editing with minimal UI)
+- ✅ Word count display (real-time statistics with words, characters, characters without spaces)
+- ✅ Recent colors picker (localStorage persistence, 8 recent + 16 standard colors)
+- ✅ Page tabs (multi-page editing with close buttons, add new tab)
+- ✅ Selection toolbar (mini toolbar with bold, italic, underline, strikethrough, link, highlight)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
