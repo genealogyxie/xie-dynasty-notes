@@ -283,32 +283,32 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 ### Templates & Customization
 - ✅ Page templates (meeting notes, to-do, etc.)
 - 🚧 Custom templates (basic templates implemented)
-- ⏳ Page backgrounds (ruled, grid, blank)
+- ✅ Page backgrounds (ruled, grid, blank, dotted, graph, cream)
 - ⏳ Section groups
 - ⏳ Notebook colors
 
 ### Organization
 - ✅ Tags with autocomplete (TagsInput component)
-- ⏳ Favorites/pinned pages
-- ⏳ Recent pages
+- ✅ Favorites/pinned pages (FavoritesPanel component)
+- ✅ Recent pages (RecentPages component)
 - ⏳ Page links (wiki-style)
-- ⏳ Table of contents generation
+- ✅ Table of contents generation (TableOfContents component)
 
 ### Editor Features
-- ❌ Tables with advanced formatting
-- ❌ Checkboxes/to-do items with completion tracking
-- ❌ Math equations (LaTeX)
-- ❌ Code syntax highlighting (more languages)
-- ❌ Embedded web content (iframes)
-- ❌ Symbols and special characters picker
+- 🚧 Tables with advanced formatting (basic tables implemented)
+- ✅ Checkboxes/to-do items with completion tracking (TaskList component)
+- ⏳ Math equations (LaTeX)
+- 🚧 Code syntax highlighting (more languages)
+- ⏳ Embedded web content (iframes)
+- ⏳ Symbols and special characters picker
 
 ### Smart Features
-- ❌ Smart paste (detect and format)
-- ❌ Auto-save indicators
-- ❌ Conflict resolution UI
-- ❌ Offline mode banner
-- ❌ Sync status indicators
-- ❌ Background sync
+- ⏳ Smart paste (detect and format)
+- ✅ Auto-save indicators (SyncStatusIndicator component)
+- ⏳ Conflict resolution UI
+- ✅ Offline mode banner (OfflineBanner component)
+- ✅ Sync status indicators (SyncStatusIndicator component)
+- 🚧 Background sync (Yjs handles this)
 
 ---
 
@@ -334,6 +334,14 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Import from Markdown, HTML, JSON, Plain Text
 - ✅ Page templates (Meeting Notes, To-Do List, Daily Notes)
 - ✅ Tags input component with keyboard support
+- ✅ Page backgrounds (6 options: blank, ruled, grid, dotted, graph, cream)
+- ✅ Favorites/pinned pages panel
+- ✅ Recent pages tracking
+- ✅ Task list with completion tracking and progress bar
+- ✅ Offline mode banner with auto-detection
+- ✅ Sync status indicator (saved, syncing, offline, error)
+- ✅ Table of contents generation
+- ✅ Breadcrumb navigation component
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
