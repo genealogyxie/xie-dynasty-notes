@@ -384,6 +384,11 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Recent colors picker (localStorage persistence, 8 recent + 16 standard colors)
 - ✅ Page tabs (multi-page editing with close buttons, add new tab)
 - ✅ Selection toolbar (mini toolbar with bold, italic, underline, strikethrough, link, highlight)
+- ✅ Auto-save indicator (saved/saving/error/offline status with time ago display)
+- ✅ Page statistics panel (word count, dates, views, edits, collaborators in card grid)
+- ✅ Formatting toolbar (heading/font size dropdowns, text formatting, alignment, lists, insert)
+- ✅ Quick access toolbar (save, undo, redo, favorite, share, print with more actions menu)
+- ✅ Page versions dropdown (recent 5 versions with view/restore actions)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
