@@ -65,3 +65,51 @@ async def login(credentials: UserLogin, db: Session = Depends(get_db)):
 @router.get("/me", response_model=UserResponse)
 async def get_me(current_user: User = Depends(get_current_user)):
     return UserResponse.model_validate(current_user)
+
+@router.post("/refresh", response_model=TokenResponse)
+async def refresh_token(refresh_token: str, db: Session = Depends(get_db)):
+    """
+    Refresh access token using refresh token.
+    Returns new access token and refresh token.
+    """
+    from app.utils.auth import decode_token
+    
+    try:
+        payload = decode_token(refresh_token)
+        user_id_raw = payload.get("sub")
+        if user_id_raw is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid refresh token"
+            )
+        
+        try:
+            user_id = int(user_id_raw)
+        except (ValueError, TypeError):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid user ID in token"
+            )
+        
+        user = db.query(User).filter(User.id == user_id).first()
+        if user is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="User not found"
+            )
+        
+        new_access_token = create_access_token({"sub": user.id})
+        new_refresh_token = create_refresh_token({"sub": user.id})
+        
+        return TokenResponse(
+            access_token=new_access_token,
+            refresh_token=new_refresh_token,
+            user=UserResponse.model_validate(user)
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid refresh token"
+        )
