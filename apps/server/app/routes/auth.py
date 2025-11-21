@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from pydantic import BaseModel
 from app.database import get_db
 from app.models.user import User
 from app.models.workspace import Workspace, WorkspaceMember, WorkspaceRole
@@ -66,16 +67,15 @@ async def login(credentials: UserLogin, db: Session = Depends(get_db)):
 async def get_me(current_user: User = Depends(get_current_user)):
     return UserResponse.model_validate(current_user)
 
+class RefreshTokenRequest(BaseModel):
+    refresh_token: str
+
 @router.post("/refresh", response_model=TokenResponse)
-async def refresh_token(refresh_token: str, db: Session = Depends(get_db)):
-    """
-    Refresh access token using refresh token.
-    Returns new access token and refresh token.
-    """
+async def refresh_token(request: RefreshTokenRequest, db: Session = Depends(get_db)):
     from app.utils.auth import decode_token
     
     try:
-        payload = decode_token(refresh_token)
+        payload = decode_token(request.refresh_token)
         user_id_raw = payload.get("sub")
         if user_id_raw is None:
             raise HTTPException(
