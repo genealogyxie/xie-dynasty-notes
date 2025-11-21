@@ -284,26 +284,26 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Page templates (meeting notes, to-do, etc.)
 - 🚧 Custom templates (basic templates implemented)
 - ✅ Page backgrounds (ruled, grid, blank, dotted, graph, cream)
-- ⏳ Section groups
-- ⏳ Notebook colors
+- ✅ Section groups (SectionGroups component)
+- ✅ Notebook colors (NotebookColorPicker component with 18 colors)
 
 ### Organization
 - ✅ Tags with autocomplete (TagsInput component)
 - ✅ Favorites/pinned pages (FavoritesPanel component)
 - ✅ Recent pages (RecentPages component)
-- ⏳ Page links (wiki-style)
+- ✅ Page links (wiki-style) (WikiLinkInput component)
 - ✅ Table of contents generation (TableOfContents component)
 
 ### Editor Features
 - 🚧 Tables with advanced formatting (basic tables implemented)
 - ✅ Checkboxes/to-do items with completion tracking (TaskList component)
-- ⏳ Math equations (LaTeX)
+- ✅ Math equations (LaTeX) (MathEquation component with 8 examples)
 - 🚧 Code syntax highlighting (more languages)
-- ⏳ Embedded web content (iframes)
-- ⏳ Symbols and special characters picker
+- ✅ Embedded web content (iframes) (EmbedContent component)
+- ✅ Symbols and special characters picker (SymbolsPicker with 100+ symbols)
 
 ### Smart Features
-- ⏳ Smart paste (detect and format)
+- ✅ Smart paste (detect and format) (SmartPaste component - detects URLs, emails, phone, dates, code, tables, lists)
 - ✅ Auto-save indicators (SyncStatusIndicator component)
 - ⏳ Conflict resolution UI
 - ✅ Offline mode banner (OfflineBanner component)
@@ -342,6 +342,18 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Sync status indicator (saved, syncing, offline, error)
 - ✅ Table of contents generation
 - ✅ Breadcrumb navigation component
+- ✅ Presence indicators (avatars with online status)
+- ✅ Comments panel (add/resolve comments with timestamps)
+- ✅ Wiki-style page links (search and link to pages)
+- ✅ Symbols picker (100+ symbols in 6 categories)
+- ✅ Notebook color picker (18 color options)
+- ✅ Enhanced sidebar (hierarchical navigation with search)
+- ✅ Share dialog (generate links, invite users, permissions)
+- ✅ @mentions input (autocomplete user suggestions)
+- ✅ Section groups (organize sections into groups)
+- ✅ Math equations (LaTeX editor with 8 examples)
+- ✅ Smart paste (auto-detect URLs, emails, phone, dates, code, tables, lists)
+- ✅ Embed content (YouTube, Google Maps, Spotify, Twitter iframes)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
