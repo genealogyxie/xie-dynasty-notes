@@ -69,13 +69,17 @@ export function Editor({ pageId, userId, userName }: EditorProps) {
       Collaboration.configure({
         document: ydoc,
       }),
-      CollaborationCursor.configure({
-        provider: provider || undefined,
-        user: {
-          name: userName,
-          color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
-        },
-      }),
+      ...(provider
+        ? [
+            CollaborationCursor.configure({
+              provider: provider,
+              user: {
+                name: userName,
+                color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+              },
+            }),
+          ]
+        : []),
       Table.configure({
         resizable: true,
       }),
