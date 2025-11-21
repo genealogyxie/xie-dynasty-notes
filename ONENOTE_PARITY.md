@@ -403,6 +403,11 @@ This document tracks the gaps between our app and Microsoft OneNote, organized b
 - ✅ Page settings panel (editor/layout settings with dropdowns, save action)
 - ✅ Collaboration status bar (online count, viewers/editors, avatar groups)
 - ✅ Quick note capture dialog (rapid note creation with notebook/section selectors)
+- ✅ Page sort options (sort by title/modified/created/author, ascending/descending)
+- ✅ Notebook info panel (stats grid, details, collaborators, edit/share/delete actions)
+- ✅ Page move dialog (move pages between notebooks/sections with validation)
+- ✅ Page copy dialog (copy pages with new name, include attachments/subpages options)
+- ✅ Page merge dialog (merge pages with append/prepend/replace modes)
 
 ### Critical Gaps Addressed
 1. **UI Polish**: ✅ Migrated to Fluent UI v9 with design tokens
