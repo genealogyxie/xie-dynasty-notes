@@ -10,9 +10,10 @@ import { VersionHistory } from '../components/VersionHistory';
 import { RecycleBin } from '../components/RecycleBin';
 import { ExportDialog } from '../components/ExportDialog';
 import { ImportDialog } from '../components/ImportDialog';
+import { PageTemplates } from '../components/PageTemplates';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
-import { LogOut, Search, History, Trash2, Download, Upload } from 'lucide-react';
+import { LogOut, Search, History, Trash2, Download, Upload, FileText } from 'lucide-react';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export function Dashboard() {
   const [recycleBinOpen, setRecycleBinOpen] = useState(false);
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
   const [importDialogOpen, setImportDialogOpen] = useState(false);
+  const [templatesOpen, setTemplatesOpen] = useState(false);
   const {
     user,
     currentPage,
@@ -119,6 +121,13 @@ export function Dashboard() {
           console.log('Imported content:', content, 'Format:', format);
         }}
       />
+      <PageTemplates
+        open={templatesOpen}
+        onClose={() => setTemplatesOpen(false)}
+        onSelectTemplate={(template) => {
+          console.log('Selected template:', template);
+        }}
+      />
       <div className="h-screen flex flex-col">
         <header className="border-b bg-white px-4 py-2 flex items-center justify-between">
           <h1 className="text-xl font-bold text-blue-600">Xie Dynasty Notes</h1>
@@ -126,6 +135,10 @@ export function Dashboard() {
             <Button variant="ghost" size="sm" onClick={() => setGlobalSearchOpen(true)}>
               <Search className="h-4 w-4 mr-2" />
               Search
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => setTemplatesOpen(true)}>
+              <FileText className="h-4 w-4 mr-2" />
+              Templates
             </Button>
             <Button variant="ghost" size="sm" onClick={() => setImportDialogOpen(true)}>
               <Upload className="h-4 w-4 mr-2" />
