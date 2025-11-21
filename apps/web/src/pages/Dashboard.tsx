@@ -6,14 +6,18 @@ import { Sidebar } from '../components/Sidebar';
 import { Editor } from '../components/Editor';
 import { CommandPalette } from '../components/CommandPalette';
 import { GlobalSearch } from '../components/GlobalSearch';
+import { VersionHistory } from '../components/VersionHistory';
+import { RecycleBin } from '../components/RecycleBin';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
-import { LogOut, Search } from 'lucide-react';
+import { LogOut, Search, History, Trash2 } from 'lucide-react';
 
 export function Dashboard() {
   const navigate = useNavigate();
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
+  const [versionHistoryOpen, setVersionHistoryOpen] = useState(false);
+  const [recycleBinOpen, setRecycleBinOpen] = useState(false);
   const {
     user,
     currentPage,
@@ -85,13 +89,34 @@ export function Dashboard() {
         open={globalSearchOpen}
         onClose={() => setGlobalSearchOpen(false)}
       />
+      {currentPage && (
+        <VersionHistory
+          open={versionHistoryOpen}
+          onClose={() => setVersionHistoryOpen(false)}
+          pageId={currentPage.id}
+        />
+      )}
+      <RecycleBin
+        open={recycleBinOpen}
+        onClose={() => setRecycleBinOpen(false)}
+      />
       <div className="h-screen flex flex-col">
         <header className="border-b bg-white px-4 py-2 flex items-center justify-between">
           <h1 className="text-xl font-bold text-blue-600">Xie Dynasty Notes</h1>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" onClick={() => setGlobalSearchOpen(true)}>
               <Search className="h-4 w-4 mr-2" />
               Search
+            </Button>
+            {currentPage && (
+              <Button variant="ghost" size="sm" onClick={() => setVersionHistoryOpen(true)}>
+                <History className="h-4 w-4 mr-2" />
+                History
+              </Button>
+            )}
+            <Button variant="ghost" size="sm" onClick={() => setRecycleBinOpen(true)}>
+              <Trash2 className="h-4 w-4 mr-2" />
+              Recycle Bin
             </Button>
             <span className="text-sm text-gray-600">{user.email}</span>
             <Button variant="ghost" size="sm" onClick={handleLogout}>
