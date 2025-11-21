@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
-import { workspacesAPI } from '../lib/api';
+import { workspacesAPI, authAPI } from '../lib/api';
 import { Sidebar } from '../components/Sidebar';
 import { Editor } from '../components/Editor';
 import { CommandPalette } from '../components/CommandPalette';
@@ -68,8 +68,19 @@ export function Dashboard() {
       return;
     }
 
+    loadUser();
     loadWorkspaces();
   }, []);
+
+  const loadUser = async () => {
+    try {
+      const response = await authAPI.me();
+      setUser(response.data);
+    } catch (error) {
+      console.error('Failed to load user:', error);
+      navigate('/login');
+    }
+  };
 
   const loadWorkspaces = async () => {
     try {

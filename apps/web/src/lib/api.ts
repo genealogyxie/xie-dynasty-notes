@@ -77,6 +77,7 @@ export const authAPI = {
     api.post('/auth/register', { email, password, full_name }),
   login: (email: string, password: string) =>
     api.post('/auth/login', { email, password }),
+  me: () => api.get<User>('/auth/me'),
 };
 
 export const workspacesAPI = {

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, ChevronRight, ChevronDown, Book, FileText, Folder } from 'lucide-react';
+import { SectionCreateDialog } from './SectionCreateDialog';
 
 export function Sidebar() {
   const {
@@ -29,6 +30,8 @@ export function Sidebar() {
   const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set());
   const [newNotebookName, setNewNotebookName] = useState('');
   const [showNewNotebook, setShowNewNotebook] = useState(false);
+  const [sectionDialogOpen, setSectionDialogOpen] = useState(false);
+  const [sectionDialogNotebookId, setSectionDialogNotebookId] = useState<number | null>(null);
 
   useEffect(() => {
     if (currentWorkspace) {
@@ -88,12 +91,21 @@ export function Sidebar() {
     }
   };
 
-  const handleCreateSection = async (notebookId: number) => {
-    const name = prompt('Section name:');
-    if (!name) return;
+  const handleCreateSection = (notebookId: number) => {
+    setSectionDialogNotebookId(notebookId);
+    setSectionDialogOpen(true);
+  };
+
+  const handleSectionCreate = async (name: string, notebookId: string) => {
     try {
-      const response = await sectionsAPI.create(notebookId, name);
+      const response = await sectionsAPI.create(parseInt(notebookId), name);
       addSection(response.data);
+      const newExpanded = new Set(expandedNotebooks);
+      newExpanded.add(parseInt(notebookId));
+      setExpandedNotebooks(newExpanded);
+      if (!currentNotebook || currentNotebook.id !== parseInt(notebookId)) {
+        setCurrentNotebook(notebooks.find((n) => n.id === parseInt(notebookId)) || null);
+      }
     } catch (error) {
       console.error('Failed to create section:', error);
     }
@@ -132,10 +144,18 @@ export function Sidebar() {
   };
 
   return (
-    <div className="w-64 border-r bg-gray-50 flex flex-col h-full">
-      <div className="p-4 border-b bg-white">
-        <h2 className="font-semibold text-lg">{currentWorkspace?.name}</h2>
-      </div>
+    <>
+      <SectionCreateDialog
+        open={sectionDialogOpen}
+        notebooks={notebooks.map((n) => ({ id: String(n.id), name: n.name }))}
+        defaultNotebookId={sectionDialogNotebookId ? String(sectionDialogNotebookId) : undefined}
+        onClose={() => setSectionDialogOpen(false)}
+        onCreate={handleSectionCreate}
+      />
+      <div className="w-64 border-r bg-gray-50 flex flex-col h-full">
+        <div className="p-4 border-b bg-white">
+          <h2 className="font-semibold text-lg">{currentWorkspace?.name}</h2>
+        </div>
       
       <div className="flex-1 overflow-auto p-2">
         <div className="flex items-center justify-between mb-2">
@@ -249,5 +269,6 @@ export function Sidebar() {
         ))}
       </div>
     </div>
+    </>
   );
 }

@@ -4,7 +4,7 @@ from app.database import get_db
 from app.models.user import User
 from app.models.workspace import Workspace, WorkspaceMember, WorkspaceRole
 from app.schemas.user import UserCreate, UserLogin, TokenResponse, UserResponse
-from app.utils.auth import hash_password, verify_password, create_access_token, create_refresh_token
+from app.utils.auth import hash_password, verify_password, create_access_token, create_refresh_token, get_current_user
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -61,3 +61,7 @@ async def login(credentials: UserLogin, db: Session = Depends(get_db)):
         refresh_token=refresh_token,
         user=UserResponse.model_validate(user)
     )
+
+@router.get("/me", response_model=UserResponse)
+async def get_me(current_user: User = Depends(get_current_user)):
+    return UserResponse.model_validate(current_user)
