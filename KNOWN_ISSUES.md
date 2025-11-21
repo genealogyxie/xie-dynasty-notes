@@ -5,41 +5,37 @@
 
 ## Critical Issues (Blocking)
 
-### 1. Auth Token Storage/Transmission Issue
+### 1. Auth Token Validation Issue ✅ FIXED
 
 **Priority:** P0 (Critical)  
-**Status:** Open  
-**Discovered:** November 21, 2025
+**Status:** ✅ RESOLVED  
+**Discovered:** November 21, 2025  
+**Fixed:** November 21, 2025
 
 **Description:**  
-After successful login (POST /auth/login returns 200 OK), subsequent requests to protected endpoints return 401 Unauthorized. The JWT token is either not being stored in localStorage or not being included in the Authorization header.
-
-**Impact:**  
-Blocks access to main application features. Users cannot access workspaces, notebooks, pages, or any protected resources after login.
-
-**Evidence:**
-```
-Backend Logs:
-INFO: 127.0.0.1:56982 - "POST /auth/login HTTP/1.1" 200 OK
-INFO: 127.0.0.1:56982 - "GET /workspaces HTTP/1.1" 401 Unauthorized
-INFO: 127.0.0.1:56984 - "GET /workspaces HTTP/1.1" 401 Unauthorized
-```
+After successful login (POST /auth/login returns 200 OK), subsequent requests to protected endpoints returned 401 Unauthorized. PyJWT library requires the "sub" claim to be a string, but backend was encoding it as an integer.
 
 **Root Cause:**  
-Frontend auth service likely has one of these issues:
-- Not storing JWT token in localStorage after login response
-- Not reading token from localStorage before making requests
-- Not including token in Authorization header (format: `Bearer <token>`)
-- Token storage key mismatch between login and request interceptor
+PyJWT enforces the "sub" claim to be a string per JWT spec. Backend was encoding `user.id` (int) directly, causing `jwt.InvalidTokenError` during token validation.
 
-**Recommended Fix:**
-1. Check auth service/store for token storage logic
-2. Verify axios/fetch interceptor includes Authorization header
-3. Ensure token is stored with correct key in localStorage
-4. Add error handling for token expiration
+**Fix Applied:**
+1. Modified `create_access_token()` to convert "sub" to string: `to_encode["sub"] = str(to_encode["sub"])`
+2. Modified `create_refresh_token()` to convert "sub" to string: `to_encode["sub"] = str(to_encode["sub"])`
+3. Modified `get_current_user()` to parse "sub" back to int: `user_id = int(user_id_raw)`
 
-**Workaround:**  
-None currently. Cannot access main application.
+**Files Modified:**
+- `/apps/server/app/utils/auth.py` (lines 19-38, 51-80)
+- `/apps/server/app/database.py` (line 9)
+
+**Verification:**
+```
+Backend Logs (After Fix):
+INFO: 127.0.0.1:58100 - "POST /auth/register HTTP/1.1" 200 OK
+INFO: 127.0.0.1:58100 - "GET /workspaces HTTP/1.1" 200 OK
+INFO: 127.0.0.1:58112 - "GET /notebooks/workspace/3 HTTP/1.1" 200 OK
+```
+
+**Status:** ✅ RESOLVED - Auth system fully functional
 
 ---
 
@@ -381,16 +377,19 @@ No formal accessibility testing has been performed.
 ## Summary
 
 **Total Issues:** 18  
-**Critical (P0):** 1  
+**Critical (P0):** 0 (1 resolved)  
 **High (P1):** 4  
 **Medium (P2):** 9  
 **Low (P3):** 4
 
-**Blocking Issues:** 1 (Auth token storage)  
+**Blocking Issues:** 0 ✅  
 **Non-Blocking Issues:** 17
 
+**Resolved Issues:**
+1. ✅ Auth token validation (P0) - FIXED
+
 **Immediate Action Required:**
-1. Fix auth token storage/transmission (P0)
+1. ✅ ~~Fix auth token storage/transmission (P0)~~ - COMPLETED
 2. Create component gallery for testing (P1)
 3. Integrate components into main UI (P1)
 4. Connect mock data to backend APIs (P1)

@@ -6,7 +6,7 @@ from functools import lru_cache
 
 class Settings(BaseSettings):
     database_url: str = "sqlite:///./notes.db"
-    jwt_secret: str = "dev-secret-key"
+    jwt_secret: str = "dev-secret-key-change-in-production"
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     refresh_token_expire_days: int = 7
