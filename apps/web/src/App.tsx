@@ -3,6 +3,7 @@ import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { CanvasPage } from './pages/CanvasPage';
 import { InkPage } from './pages/InkPage';
+import { PdfPage } from './pages/PdfPage';
 import { AppFluentProvider } from './theme/FluentProvider';
 import { useStore } from './store/useStore';
 import './App.css';
@@ -12,6 +13,11 @@ function DashboardWrapper() {
   const { currentPage, user } = useStore();
   const canvasMode = searchParams.get('canvas') === '1';
   const inkMode = searchParams.get('ink') === '1';
+  const pdfMode = searchParams.get('pdf') === '1';
+
+  if (pdfMode) {
+    return <PdfPage />;
+  }
 
   if (inkMode && currentPage && user) {
     return (
