@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { workspacesAPI, authAPI } from '../lib/api';
+import { useOffline } from '../contexts/OfflineContext';
 import { Sidebar } from '../components/Sidebar';
 import { Editor } from '../components/Editor';
 import { CommandPalette } from '../components/CommandPalette';
@@ -17,9 +18,11 @@ import { OfflineBanner } from '../components/OfflineBanner';
 import { PresenceIndicators } from '../components/PresenceIndicators';
 import { SymbolsPicker } from '../components/SymbolsPicker';
 import { NotebookColorPicker } from '../components/NotebookColorPicker';
+import { DictionaryPanel } from '../components/DictionaryPanel';
+import { AIAssistantPanel } from '../components/AIAssistantPanel';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
-import { LogOut, Search, History, Trash2, Download, Upload, FileText, Palette, AtSign } from 'lucide-react';
+import { LogOut, Search, History, Trash2, Download, Upload, FileText, Palette, AtSign, BookOpen, Sparkles } from 'lucide-react';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -33,7 +36,9 @@ export function Dashboard() {
   const [backgroundsOpen, setBackgroundsOpen] = useState(false);
   const [symbolsOpen, setSymbolsOpen] = useState(false);
   const [notebookColorOpen, setNotebookColorOpen] = useState(false);
-  const [syncStatus] = useState<'synced' | 'syncing' | 'offline' | 'error'>('synced');
+  const [dictionaryOpen, setDictionaryOpen] = useState(false);
+  const [aiAssistantOpen, setAIAssistantOpen] = useState(false);
+  const { dictionary, aiProvider, syncStatus } = useOffline();
   const {
     user,
     currentPage,
@@ -58,6 +63,12 @@ export function Dashboard() {
       ctrl: true,
       shift: true,
       handler: () => setGlobalSearchOpen(true),
+    },
+    {
+      key: 'd',
+      ctrl: true,
+      shift: true,
+      handler: () => setDictionaryOpen(true),
     },
   ]);
 
@@ -116,6 +127,16 @@ export function Dashboard() {
       <GlobalSearch
         open={globalSearchOpen}
         onClose={() => setGlobalSearchOpen(false)}
+      />
+      <DictionaryPanel
+        open={dictionaryOpen}
+        onClose={() => setDictionaryOpen(false)}
+        onLookup={(word) => dictionary.lookup(word)}
+      />
+      <AIAssistantPanel
+        open={aiAssistantOpen}
+        onClose={() => setAIAssistantOpen(false)}
+        aiProvider={aiProvider}
       />
       {currentPage && (
         <VersionHistory
@@ -180,10 +201,18 @@ export function Dashboard() {
                 { id: '1', name: 'Current User', email: user.email, isActive: true, color: 'colorful' },
               ]} 
             />
-            <SyncStatusIndicator status={syncStatus} lastSyncTime={new Date()} />
+            <SyncStatusIndicator status={syncStatus.status} lastSyncTime={syncStatus.lastSyncTime || new Date()} />
             <Button variant="ghost" size="sm" onClick={() => setGlobalSearchOpen(true)}>
               <Search className="h-4 w-4 mr-2" />
               Search
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => setDictionaryOpen(true)}>
+              <BookOpen className="h-4 w-4 mr-2" />
+              Dictionary
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => setAIAssistantOpen(true)}>
+              <Sparkles className="h-4 w-4 mr-2" />
+              AI Assistant
             </Button>
             <Button variant="ghost" size="sm" onClick={() => setSymbolsOpen(true)}>
               <AtSign className="h-4 w-4 mr-2" />

@@ -5,6 +5,7 @@ import { CanvasPage } from './pages/CanvasPage';
 import { InkPage } from './pages/InkPage';
 import { PdfPage } from './pages/PdfPage';
 import { AppFluentProvider } from './theme/FluentProvider';
+import { OfflineProvider } from './contexts/OfflineContext';
 import { useStore } from './store/useStore';
 import './App.css';
 
@@ -45,13 +46,15 @@ function DashboardWrapper() {
 function App() {
   return (
     <AppFluentProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<DashboardWrapper />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </BrowserRouter>
+      <OfflineProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<DashboardWrapper />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </OfflineProvider>
     </AppFluentProvider>
   );
 }
