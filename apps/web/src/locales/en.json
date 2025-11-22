@@ -1,0 +1,143 @@
+{
+  "app": {
+    "title": "Xie Dynasty Notes",
+    "welcome": "Welcome to Xie Dynasty Notes",
+    "welcomeMessage": "Create a notebook and start taking notes",
+    "shortcutHint": "Press Ctrl+K for quick navigation, Ctrl+Shift+F for global search"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "exitGuestMode": "Exit Guest Mode",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full Name",
+    "guestMode": "Continue as Guest (Offline Mode)",
+    "guestModeDescription": "Use the app without an account. All data stored locally on your device.",
+    "guestModeLabel": "Guest Mode"
+  },
+  "workspace": {
+    "myWorkspace": "My Workspace",
+    "workspaces": "Workspaces"
+  },
+  "notebook": {
+    "notebook": "Notebook",
+    "notebooks": "Notebooks",
+    "newNotebook": "New Notebook",
+    "notebookName": "Notebook name",
+    "gettingStarted": "Getting Started"
+  },
+  "section": {
+    "section": "Section",
+    "sections": "Sections",
+    "newSection": "New Section",
+    "sectionName": "Section name",
+    "quickNotes": "Quick Notes"
+  },
+  "page": {
+    "page": "Page",
+    "pages": "Pages",
+    "newPage": "New Page",
+    "untitled": "Untitled",
+    "pageTitle": "Page title"
+  },
+  "editor": {
+    "bold": "Bold",
+    "italic": "Italic",
+    "underline": "Underline",
+    "strikethrough": "Strikethrough",
+    "code": "Code",
+    "heading1": "Heading 1",
+    "heading2": "Heading 2",
+    "heading3": "Heading 3",
+    "bulletList": "Bullet List",
+    "orderedList": "Ordered List",
+    "blockquote": "Blockquote",
+    "codeBlock": "Code Block",
+    "link": "Link",
+    "image": "Image",
+    "table": "Table",
+    "undo": "Undo",
+    "redo": "Redo"
+  },
+  "toolbar": {
+    "search": "Search",
+    "dictionary": "Dictionary",
+    "aiAssistant": "AI Assistant",
+    "symbols": "Symbols",
+    "templates": "Templates",
+    "import": "Import",
+    "export": "Export",
+    "background": "Background",
+    "history": "History",
+    "recycleBin": "Recycle Bin"
+  },
+  "dictionary": {
+    "title": "Dictionary",
+    "lookupWord": "Look up a word",
+    "searchPlaceholder": "Enter a word to look up...",
+    "search": "Search",
+    "noResults": "No definition found",
+    "suggestions": "Did you mean",
+    "partOfSpeech": {
+      "noun": "noun",
+      "verb": "verb",
+      "adjective": "adjective",
+      "adverb": "adverb",
+      "pronoun": "pronoun",
+      "preposition": "preposition",
+      "conjunction": "conjunction",
+      "interjection": "interjection"
+    },
+    "definitions": "Definitions",
+    "synonyms": "Synonyms",
+    "antonyms": "Antonyms",
+    "examples": "Examples"
+  },
+  "ai": {
+    "title": "AI Assistant",
+    "summarize": "Summarize",
+    "keywords": "Extract Keywords",
+    "ocr": "OCR (Extract Text from Image)",
+    "selectImage": "Select Image",
+    "processing": "Processing...",
+    "summary": "Summary",
+    "extractedKeywords": "Extracted Keywords",
+    "extractedText": "Extracted Text",
+    "noText": "No text extracted"
+  },
+  "language": {
+    "title": "Language",
+    "select": "Select Language",
+    "english": "English",
+    "french": "French",
+    "hindi": "Hindi",
+    "russian": "Russian",
+    "hebrew": "Hebrew",
+    "chinese": "Chinese"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "close": "Close",
+    "ok": "OK",
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "errors": {
+    "createNotebook": "Failed to create notebook. Please try again.",
+    "createSection": "Failed to create section. Please try again.",
+    "createPage": "Failed to create page. Please try again.",
+    "loadData": "Failed to load data. Please try again.",
+    "generic": "An error occurred. Please try again."
+  }
+}

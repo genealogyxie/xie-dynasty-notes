@@ -1,0 +1,143 @@
+{
+  "app": {
+    "title": "Notes de la Dynastie Xie",
+    "welcome": "Bienvenue dans Notes de la Dynastie Xie",
+    "welcomeMessage": "Créez un cahier et commencez à prendre des notes",
+    "shortcutHint": "Appuyez sur Ctrl+K pour une navigation rapide, Ctrl+Shift+F pour une recherche globale"
+  },
+  "auth": {
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "logout": "Déconnexion",
+    "exitGuestMode": "Quitter le mode invité",
+    "email": "Email",
+    "password": "Mot de passe",
+    "fullName": "Nom complet",
+    "guestMode": "Continuer en tant qu'invité (Mode hors ligne)",
+    "guestModeDescription": "Utilisez l'application sans compte. Toutes les données sont stockées localement sur votre appareil.",
+    "guestModeLabel": "Mode invité"
+  },
+  "workspace": {
+    "myWorkspace": "Mon espace de travail",
+    "workspaces": "Espaces de travail"
+  },
+  "notebook": {
+    "notebook": "Cahier",
+    "notebooks": "Cahiers",
+    "newNotebook": "Nouveau cahier",
+    "notebookName": "Nom du cahier",
+    "gettingStarted": "Commencer"
+  },
+  "section": {
+    "section": "Section",
+    "sections": "Sections",
+    "newSection": "Nouvelle section",
+    "sectionName": "Nom de la section",
+    "quickNotes": "Notes rapides"
+  },
+  "page": {
+    "page": "Page",
+    "pages": "Pages",
+    "newPage": "Nouvelle page",
+    "untitled": "Sans titre",
+    "pageTitle": "Titre de la page"
+  },
+  "editor": {
+    "bold": "Gras",
+    "italic": "Italique",
+    "underline": "Souligné",
+    "strikethrough": "Barré",
+    "code": "Code",
+    "heading1": "Titre 1",
+    "heading2": "Titre 2",
+    "heading3": "Titre 3",
+    "bulletList": "Liste à puces",
+    "orderedList": "Liste numérotée",
+    "blockquote": "Citation",
+    "codeBlock": "Bloc de code",
+    "link": "Lien",
+    "image": "Image",
+    "table": "Tableau",
+    "undo": "Annuler",
+    "redo": "Refaire"
+  },
+  "toolbar": {
+    "search": "Rechercher",
+    "dictionary": "Dictionnaire",
+    "aiAssistant": "Assistant IA",
+    "symbols": "Symboles",
+    "templates": "Modèles",
+    "import": "Importer",
+    "export": "Exporter",
+    "background": "Arrière-plan",
+    "history": "Historique",
+    "recycleBin": "Corbeille"
+  },
+  "dictionary": {
+    "title": "Dictionnaire",
+    "lookupWord": "Rechercher un mot",
+    "searchPlaceholder": "Entrez un mot à rechercher...",
+    "search": "Rechercher",
+    "noResults": "Aucune définition trouvée",
+    "suggestions": "Vouliez-vous dire",
+    "partOfSpeech": {
+      "noun": "nom",
+      "verb": "verbe",
+      "adjective": "adjectif",
+      "adverb": "adverbe",
+      "pronoun": "pronom",
+      "preposition": "préposition",
+      "conjunction": "conjonction",
+      "interjection": "interjection"
+    },
+    "definitions": "Définitions",
+    "synonyms": "Synonymes",
+    "antonyms": "Antonymes",
+    "examples": "Exemples"
+  },
+  "ai": {
+    "title": "Assistant IA",
+    "summarize": "Résumer",
+    "keywords": "Extraire les mots-clés",
+    "ocr": "OCR (Extraire le texte de l'image)",
+    "selectImage": "Sélectionner une image",
+    "processing": "Traitement en cours...",
+    "summary": "Résumé",
+    "extractedKeywords": "Mots-clés extraits",
+    "extractedText": "Texte extrait",
+    "noText": "Aucun texte extrait"
+  },
+  "language": {
+    "title": "Langue",
+    "select": "Sélectionner la langue",
+    "english": "Anglais",
+    "french": "Français",
+    "hindi": "Hindi",
+    "russian": "Russe",
+    "hebrew": "Hébreu",
+    "chinese": "Chinois"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "close": "Fermer",
+    "ok": "OK",
+    "yes": "Oui",
+    "no": "Non",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Avertissement",
+    "info": "Info"
+  },
+  "errors": {
+    "createNotebook": "Échec de la création du cahier. Veuillez réessayer.",
+    "createSection": "Échec de la création de la section. Veuillez réessayer.",
+    "createPage": "Échec de la création de la page. Veuillez réessayer.",
+    "loadData": "Échec du chargement des données. Veuillez réessayer.",
+    "generic": "Une erreur s'est produite. Veuillez réessayer."
+  }
+}

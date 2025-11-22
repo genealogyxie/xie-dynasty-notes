@@ -1,0 +1,143 @@
+{
+  "app": {
+    "title": "谢氏王朝笔记",
+    "welcome": "欢迎使用谢氏王朝笔记",
+    "welcomeMessage": "创建笔记本并开始记笔记",
+    "shortcutHint": "按 Ctrl+K 快速导航，按 Ctrl+Shift+F 全局搜索"
+  },
+  "auth": {
+    "login": "登录",
+    "signup": "注册",
+    "logout": "退出",
+    "exitGuestMode": "退出访客模式",
+    "email": "电子邮件",
+    "password": "密码",
+    "fullName": "全名",
+    "guestMode": "以访客身份继续（离线模式）",
+    "guestModeDescription": "无需账户即可使用应用。所有数据本地存储在您的设备上。",
+    "guestModeLabel": "访客模式"
+  },
+  "workspace": {
+    "myWorkspace": "我的工作区",
+    "workspaces": "工作区"
+  },
+  "notebook": {
+    "notebook": "笔记本",
+    "notebooks": "笔记本",
+    "newNotebook": "新建笔记本",
+    "notebookName": "笔记本名称",
+    "gettingStarted": "入门指南"
+  },
+  "section": {
+    "section": "分区",
+    "sections": "分区",
+    "newSection": "新建分区",
+    "sectionName": "分区名称",
+    "quickNotes": "快速笔记"
+  },
+  "page": {
+    "page": "页面",
+    "pages": "页面",
+    "newPage": "新建页面",
+    "untitled": "无标题",
+    "pageTitle": "页面标题"
+  },
+  "editor": {
+    "bold": "粗体",
+    "italic": "斜体",
+    "underline": "下划线",
+    "strikethrough": "删除线",
+    "code": "代码",
+    "heading1": "标题 1",
+    "heading2": "标题 2",
+    "heading3": "标题 3",
+    "bulletList": "项目符号列表",
+    "orderedList": "编号列表",
+    "blockquote": "引用",
+    "codeBlock": "代码块",
+    "link": "链接",
+    "image": "图片",
+    "table": "表格",
+    "undo": "撤销",
+    "redo": "重做"
+  },
+  "toolbar": {
+    "search": "搜索",
+    "dictionary": "词典",
+    "aiAssistant": "AI 助手",
+    "symbols": "符号",
+    "templates": "模板",
+    "import": "导入",
+    "export": "导出",
+    "background": "背景",
+    "history": "历史记录",
+    "recycleBin": "回收站"
+  },
+  "dictionary": {
+    "title": "词典",
+    "lookupWord": "查找单词",
+    "searchPlaceholder": "输入要查找的单词...",
+    "search": "搜索",
+    "noResults": "未找到定义",
+    "suggestions": "您是否要找",
+    "partOfSpeech": {
+      "noun": "名词",
+      "verb": "动词",
+      "adjective": "形容词",
+      "adverb": "副词",
+      "pronoun": "代词",
+      "preposition": "介词",
+      "conjunction": "连词",
+      "interjection": "感叹词"
+    },
+    "definitions": "定义",
+    "synonyms": "同义词",
+    "antonyms": "反义词",
+    "examples": "示例"
+  },
+  "ai": {
+    "title": "AI 助手",
+    "summarize": "总结",
+    "keywords": "提取关键词",
+    "ocr": "OCR（从图片提取文本）",
+    "selectImage": "选择图片",
+    "processing": "处理中...",
+    "summary": "摘要",
+    "extractedKeywords": "提取的关键词",
+    "extractedText": "提取的文本",
+    "noText": "未提取到文本"
+  },
+  "language": {
+    "title": "语言",
+    "select": "选择语言",
+    "english": "英语",
+    "french": "法语",
+    "hindi": "印地语",
+    "russian": "俄语",
+    "hebrew": "希伯来语",
+    "chinese": "中文"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "close": "关闭",
+    "ok": "确定",
+    "yes": "是",
+    "no": "否",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "warning": "警告",
+    "info": "信息"
+  },
+  "errors": {
+    "createNotebook": "创建笔记本失败。请重试。",
+    "createSection": "创建分区失败。请重试。",
+    "createPage": "创建页面失败。请重试。",
+    "loadData": "加载数据失败。请重试。",
+    "generic": "发生错误。请重试。"
+  }
+}

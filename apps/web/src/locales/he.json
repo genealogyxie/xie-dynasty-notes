@@ -1,0 +1,143 @@
+{
+  "app": {
+    "title": "הערות שושלת שיה",
+    "welcome": "ברוכים הבאים להערות שושלת שיה",
+    "welcomeMessage": "צור מחברת והתחל לרשום הערות",
+    "shortcutHint": "לחץ Ctrl+K לניווט מהיר, Ctrl+Shift+F לחיפוש גלובלי"
+  },
+  "auth": {
+    "login": "התחברות",
+    "signup": "הרשמה",
+    "logout": "התנתקות",
+    "exitGuestMode": "צא ממצב אורח",
+    "email": "דוא\"ל",
+    "password": "סיסמה",
+    "fullName": "שם מלא",
+    "guestMode": "המשך כאורח (מצב לא מקוון)",
+    "guestModeDescription": "השתמש באפליקציה ללא חשבון. כל הנתונים מאוחסנים באופן מקומי במכשיר שלך.",
+    "guestModeLabel": "מצב אורח"
+  },
+  "workspace": {
+    "myWorkspace": "סביבת העבודה שלי",
+    "workspaces": "סביבות עבודה"
+  },
+  "notebook": {
+    "notebook": "מחברת",
+    "notebooks": "מחברות",
+    "newNotebook": "מחברת חדשה",
+    "notebookName": "שם המחברת",
+    "gettingStarted": "תחילת העבודה"
+  },
+  "section": {
+    "section": "קטע",
+    "sections": "קטעים",
+    "newSection": "קטע חדש",
+    "sectionName": "שם הקטע",
+    "quickNotes": "הערות מהירות"
+  },
+  "page": {
+    "page": "עמוד",
+    "pages": "עמודים",
+    "newPage": "עמוד חדש",
+    "untitled": "ללא כותרת",
+    "pageTitle": "כותרת העמוד"
+  },
+  "editor": {
+    "bold": "מודגש",
+    "italic": "נטוי",
+    "underline": "קו תחתון",
+    "strikethrough": "קו חוצה",
+    "code": "קוד",
+    "heading1": "כותרת 1",
+    "heading2": "כותרת 2",
+    "heading3": "כותרת 3",
+    "bulletList": "רשימת תבליטים",
+    "orderedList": "רשימה ממוספרת",
+    "blockquote": "ציטוט",
+    "codeBlock": "בלוק קוד",
+    "link": "קישור",
+    "image": "תמונה",
+    "table": "טבלה",
+    "undo": "בטל",
+    "redo": "בצע שוב"
+  },
+  "toolbar": {
+    "search": "חיפוש",
+    "dictionary": "מילון",
+    "aiAssistant": "עוזר AI",
+    "symbols": "סמלים",
+    "templates": "תבניות",
+    "import": "ייבוא",
+    "export": "ייצוא",
+    "background": "רקע",
+    "history": "היסטוריה",
+    "recycleBin": "סל מחזור"
+  },
+  "dictionary": {
+    "title": "מילון",
+    "lookupWord": "חפש מילה",
+    "searchPlaceholder": "הזן מילה לחיפוש...",
+    "search": "חיפוש",
+    "noResults": "לא נמצא הגדרה",
+    "suggestions": "האם התכוונת ל",
+    "partOfSpeech": {
+      "noun": "שם עצם",
+      "verb": "פועל",
+      "adjective": "שם תואר",
+      "adverb": "תואר הפועל",
+      "pronoun": "כינוי",
+      "preposition": "מילת יחס",
+      "conjunction": "מילת חיבור",
+      "interjection": "קריאה"
+    },
+    "definitions": "הגדרות",
+    "synonyms": "מילים נרדפות",
+    "antonyms": "הפכים",
+    "examples": "דוגמאות"
+  },
+  "ai": {
+    "title": "עוזר AI",
+    "summarize": "סכם",
+    "keywords": "חלץ מילות מפתח",
+    "ocr": "OCR (חלץ טקסט מתמונה)",
+    "selectImage": "בחר תמונה",
+    "processing": "מעבד...",
+    "summary": "סיכום",
+    "extractedKeywords": "מילות מפתח שחולצו",
+    "extractedText": "טקסט שחולץ",
+    "noText": "לא חולץ טקסט"
+  },
+  "language": {
+    "title": "שפה",
+    "select": "בחר שפה",
+    "english": "אנגלית",
+    "french": "צרפתית",
+    "hindi": "הינדי",
+    "russian": "רוסית",
+    "hebrew": "עברית",
+    "chinese": "סינית"
+  },
+  "common": {
+    "save": "שמור",
+    "cancel": "ביטול",
+    "delete": "מחק",
+    "edit": "ערוך",
+    "create": "צור",
+    "close": "סגור",
+    "ok": "אישור",
+    "yes": "כן",
+    "no": "לא",
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "success": "הצלחה",
+    "warning": "אזהרה",
+    "info": "מידע"
+  },
+  "errors": {
+    "createNotebook": "יצירת המחברת נכשלה. אנא נסה שוב.",
+    "createSection": "יצירת הקטע נכשלה. אנא נסה שוב.",
+    "createPage": "יצירת העמוד נכשלה. אנא נסה שוב.",
+    "loadData": "טעינת הנתונים נכשלה. אנא נסה שוב.",
+    "generic": "אירעה שגיאה. אנא נסה שוב."
+  }
+}

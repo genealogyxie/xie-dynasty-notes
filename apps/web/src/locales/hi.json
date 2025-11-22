@@ -1,0 +1,143 @@
+{
+  "app": {
+    "title": "शी राजवंश नोट्स",
+    "welcome": "शी राजवंश नोट्स में आपका स्वागत है",
+    "welcomeMessage": "एक नोटबुक बनाएं और नोट्स लेना शुरू करें",
+    "shortcutHint": "त्वरित नेविगेशन के लिए Ctrl+K दबाएं, वैश्विक खोज के लिए Ctrl+Shift+F दबाएं"
+  },
+  "auth": {
+    "login": "लॉगिन",
+    "signup": "साइन अप करें",
+    "logout": "लॉगआउट",
+    "exitGuestMode": "अतिथि मोड से बाहर निकलें",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "fullName": "पूरा नाम",
+    "guestMode": "अतिथि के रूप में जारी रखें (ऑफ़लाइन मोड)",
+    "guestModeDescription": "बिना खाते के ऐप का उपयोग करें। सभी डेटा आपके डिवाइस पर स्थानीय रूप से संग्रहीत है।",
+    "guestModeLabel": "अतिथि मोड"
+  },
+  "workspace": {
+    "myWorkspace": "मेरा कार्यक्षेत्र",
+    "workspaces": "कार्यक्षेत्र"
+  },
+  "notebook": {
+    "notebook": "नोटबुक",
+    "notebooks": "नोटबुक",
+    "newNotebook": "नई नोटबुक",
+    "notebookName": "नोटबुक का नाम",
+    "gettingStarted": "शुरुआत करना"
+  },
+  "section": {
+    "section": "अनुभाग",
+    "sections": "अनुभाग",
+    "newSection": "नया अनुभाग",
+    "sectionName": "अनुभाग का नाम",
+    "quickNotes": "त्वरित नोट्स"
+  },
+  "page": {
+    "page": "पृष्ठ",
+    "pages": "पृष्ठ",
+    "newPage": "नया पृष्ठ",
+    "untitled": "शीर्षकहीन",
+    "pageTitle": "पृष्ठ शीर्षक"
+  },
+  "editor": {
+    "bold": "बोल्ड",
+    "italic": "इटैलिक",
+    "underline": "रेखांकित",
+    "strikethrough": "स्ट्राइकथ्रू",
+    "code": "कोड",
+    "heading1": "शीर्षक 1",
+    "heading2": "शीर्षक 2",
+    "heading3": "शीर्षक 3",
+    "bulletList": "बुलेट सूची",
+    "orderedList": "क्रमांकित सूची",
+    "blockquote": "उद्धरण",
+    "codeBlock": "कोड ब्लॉक",
+    "link": "लिंक",
+    "image": "छवि",
+    "table": "तालिका",
+    "undo": "पूर्ववत करें",
+    "redo": "फिर से करें"
+  },
+  "toolbar": {
+    "search": "खोजें",
+    "dictionary": "शब्दकोश",
+    "aiAssistant": "एआई सहायक",
+    "symbols": "प्रतीक",
+    "templates": "टेम्पलेट",
+    "import": "आयात करें",
+    "export": "निर्यात करें",
+    "background": "पृष्ठभूमि",
+    "history": "इतिहास",
+    "recycleBin": "रीसायकल बिन"
+  },
+  "dictionary": {
+    "title": "शब्दकोश",
+    "lookupWord": "एक शब्द खोजें",
+    "searchPlaceholder": "खोजने के लिए एक शब्द दर्ज करें...",
+    "search": "खोजें",
+    "noResults": "कोई परिभाषा नहीं मिली",
+    "suggestions": "क्या आपका मतलब था",
+    "partOfSpeech": {
+      "noun": "संज्ञा",
+      "verb": "क्रिया",
+      "adjective": "विशेषण",
+      "adverb": "क्रिया विशेषण",
+      "pronoun": "सर्वनाम",
+      "preposition": "पूर्वसर्ग",
+      "conjunction": "संयोजन",
+      "interjection": "विस्मयादिबोधक"
+    },
+    "definitions": "परिभाषाएं",
+    "synonyms": "समानार्थी",
+    "antonyms": "विलोम",
+    "examples": "उदाहरण"
+  },
+  "ai": {
+    "title": "एआई सहायक",
+    "summarize": "सारांश",
+    "keywords": "मुख्य शब्द निकालें",
+    "ocr": "OCR (छवि से पाठ निकालें)",
+    "selectImage": "छवि चुनें",
+    "processing": "प्रसंस्करण...",
+    "summary": "सारांश",
+    "extractedKeywords": "निकाले गए मुख्य शब्द",
+    "extractedText": "निकाला गया पाठ",
+    "noText": "कोई पाठ नहीं निकाला गया"
+  },
+  "language": {
+    "title": "भाषा",
+    "select": "भाषा चुनें",
+    "english": "अंग्रेज़ी",
+    "french": "फ्रेंच",
+    "hindi": "हिंदी",
+    "russian": "रूसी",
+    "hebrew": "हिब्रू",
+    "chinese": "चीनी"
+  },
+  "common": {
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "create": "बनाएं",
+    "close": "बंद करें",
+    "ok": "ठीक है",
+    "yes": "हां",
+    "no": "नहीं",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफलता",
+    "warning": "चेतावनी",
+    "info": "जानकारी"
+  },
+  "errors": {
+    "createNotebook": "नोटबुक बनाने में विफल। कृपया पुनः प्रयास करें।",
+    "createSection": "अनुभाग बनाने में विफल। कृपया पुनः प्रयास करें।",
+    "createPage": "पृष्ठ बनाने में विफल। कृपया पुनः प्रयास करें।",
+    "loadData": "डेटा लोड करने में विफल। कृपया पुनः प्रयास करें।",
+    "generic": "एक त्रुटि हुई। कृपया पुनः प्रयास करें।"
+  }
+}
