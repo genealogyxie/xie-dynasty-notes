@@ -32,6 +32,8 @@ export function Sidebar() {
   const [showNewNotebook, setShowNewNotebook] = useState(false);
   const [sectionDialogOpen, setSectionDialogOpen] = useState(false);
   const [sectionDialogNotebookId, setSectionDialogNotebookId] = useState<number | null>(null);
+  const [isCreatingPage, setIsCreatingPage] = useState(false);
+  const [isCreatingNotebook, setIsCreatingNotebook] = useState(false);
 
   useEffect(() => {
     if (currentWorkspace) {
@@ -80,7 +82,8 @@ export function Sidebar() {
   };
 
   const handleCreateNotebook = async () => {
-    if (!currentWorkspace || !newNotebookName.trim()) return;
+    if (!currentWorkspace || !newNotebookName.trim() || isCreatingNotebook) return;
+    setIsCreatingNotebook(true);
     try {
       const response = await notebooksAPI.create(currentWorkspace.id, newNotebookName);
       addNotebook(response.data);
@@ -88,6 +91,8 @@ export function Sidebar() {
       setShowNewNotebook(false);
     } catch (error) {
       console.error('Failed to create notebook:', error);
+    } finally {
+      setIsCreatingNotebook(false);
     }
   };
 
@@ -112,12 +117,16 @@ export function Sidebar() {
   };
 
   const handleCreatePage = async (sectionId: number) => {
+    if (isCreatingPage) return;
+    setIsCreatingPage(true);
     try {
       const response = await pagesAPI.create(sectionId, 'Untitled');
       addPage(response.data);
       setCurrentPage(response.data);
     } catch (error) {
       console.error('Failed to create page:', error);
+    } finally {
+      setIsCreatingPage(false);
     }
   };
 
@@ -238,6 +247,7 @@ export function Sidebar() {
                           size="sm"
                           className="h-6 w-6 p-0"
                           onClick={() => handleCreatePage(section.id)}
+                          disabled={isCreatingPage}
                         >
                           <Plus className="h-3 w-3" />
                         </Button>

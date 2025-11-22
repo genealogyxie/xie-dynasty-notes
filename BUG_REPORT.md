@@ -1,7 +1,7 @@
 # Bug Report - OneNote Clone Testing Session (Continued)
 
 ## Summary
-Systematic testing of the OneNote clone application revealed 4 critical bugs. All 4 have been fixed. The application is now significantly more stable with reliable auth, CRUD operations, and editor functionality.
+Systematic testing of the OneNote clone application revealed 5 critical bugs. All 5 have been fixed. The application is now significantly more stable with reliable auth, CRUD operations, editor functionality, and race condition protection.
 
 ## Bugs Found and Fixed
 
@@ -116,6 +116,51 @@ The `CollaborationCursor` extension was trying to access `provider.awareness` du
 - WebSocket connection errors (403) are expected and benign - backend needs WebSocket server implementation
 
 **Note:** BUG #5 (Blank screen after Editor crash) was automatically fixed by fixing BUG #4, since the blank screen was a consequence of the Editor crash.
+
+---
+
+### BUG #8: Race Condition in Page Creation - Rapid Clicks Create Duplicates
+**Severity:** High  
+**Status:** FIXED
+
+**Description:**
+Rapid clicking on the "+" button next to a section name created multiple duplicate pages instead of just one. This race condition occurred because the `handleCreatePage` function didn't track whether a request was already in progress.
+
+**Root Cause:**
+The `handleCreatePage` function in `Sidebar.tsx` was async but had no protection against concurrent calls. When users rapidly clicked the "+" button, multiple POST requests were sent to the backend before the first request completed, resulting in duplicate pages being created.
+
+**Reproduction Steps:**
+1. Log in to the application
+2. Expand a notebook and section
+3. Rapidly click the "+" button next to the section name 5 times in quick succession
+4. Expected: Only 1 page created
+5. Actual: 5 duplicate "Untitled" pages created
+
+**Evidence from Backend Logs:**
+```
+INFO:     127.0.0.1:36890 - "POST /pages/section/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36890 - "POST /pages/section/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36890 - "POST /pages/section/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36890 - "POST /pages/section/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36890 - "POST /pages/section/2 HTTP/1.1" 200 OK
+```
+
+**Fix Applied:**
+- Added `isCreatingPage` state variable to track whether a page creation request is in progress
+- Added `isCreatingNotebook` state variable to protect notebook creation as well
+- Modified `handleCreatePage` to check `isCreatingPage` flag and return early if already creating
+- Modified `handleCreateNotebook` to check `isCreatingNotebook` flag and return early if already creating
+- Added `disabled={isCreatingPage}` prop to the page creation button to provide visual feedback
+- Used try/finally blocks to ensure loading state is always reset even if request fails
+
+**Files Changed:**
+- `apps/web/src/components/Sidebar.tsx`
+
+**Verification:**
+- Rapid clicking on "+" button now only creates one page
+- Backend logs show only one POST request is sent
+- Button is disabled during page creation to prevent duplicate clicks
+- Loading state properly resets after request completes or fails
 
 ---
 
@@ -237,6 +282,17 @@ Warning: A component is changing an uncontrolled value to be controlled.
 - ✅ Long names with special characters - working correctly
 - ✅ Emoji in notebook names - displays as escaped Unicode sequences (testing environment issue, not app bug)
 
+**Additional Tests Performed (Session 13):**
+- ✅ Empty input validation - works correctly (notebook and section creation)
+- ✅ Whitespace-only input validation - works correctly
+- ✅ Escape key to cancel input - works correctly
+- ✅ Section creation dialog - works correctly with proper validation
+- ✅ Page creation and editor loading - works correctly
+- ✅ Editor text formatting (bold) - works correctly
+- ✅ Rapid clicking for race conditions - FOUND BUG #8, now fixed
+- ✅ Command palette (Ctrl+K) - works correctly
+- ✅ Global search (Ctrl+Shift+F) - works correctly
+
 **Tests Not Performed:**
 - Delete operations (not implemented in UI yet)
 - Error handling edge cases (invalid data, network errors)
@@ -295,10 +351,11 @@ Warning: A component is changing an uncontrolled value to be controlled.
 
 ## Conclusion
 
-Four critical bugs were identified and fixed:
+Five critical bugs were identified and fixed:
 1. **Section creation** now uses proper dialog instead of unreliable prompt()
 2. **User state** properly persists across page reloads
 3. **Editor crash** fixed by conditionally including CollaborationCursor extension
 4. **Token refresh logic** implemented with request queuing to prevent unexpected logouts
+5. **Race condition in page creation** fixed with loading states to prevent duplicate pages
 
-The application is now significantly more stable and provides excellent UX. Core functionality (auth, CRUD operations, page editing, multi-tab consistency) now works reliably. The offline-first architecture with IndexedDB persistence is working as designed. Token refresh logic ensures users stay logged in for 7 days without interruption.
+The application is now significantly more stable and provides excellent UX. Core functionality (auth, CRUD operations, page editing, multi-tab consistency, race condition protection) now works reliably. The offline-first architecture with IndexedDB persistence is working as designed. Token refresh logic ensures users stay logged in for 7 days without interruption. All create operations are now protected against rapid clicking.
