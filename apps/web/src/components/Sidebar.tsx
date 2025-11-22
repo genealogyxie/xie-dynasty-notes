@@ -1,5 +1,5 @@
 import { useStore } from '../store/useStore';
-import { notebooksAPI, sectionsAPI, pagesAPI } from '../lib/api';
+import { useDataAPI } from '../hooks/useDataAPI';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,6 +25,8 @@ export function Sidebar() {
     addSection,
     addPage,
   } = useStore();
+
+  const dataAPI = useDataAPI();
 
   const [expandedNotebooks, setExpandedNotebooks] = useState<Set<number>>(new Set());
   const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set());
@@ -56,7 +58,7 @@ export function Sidebar() {
   const loadNotebooks = async () => {
     if (!currentWorkspace) return;
     try {
-      const response = await notebooksAPI.list(currentWorkspace.id);
+      const response = await dataAPI.notebooks.list(currentWorkspace.id);
       setNotebooks(response.data);
     } catch (error) {
       console.error('Failed to load notebooks:', error);
@@ -65,7 +67,7 @@ export function Sidebar() {
 
   const loadSections = async (notebookId: number) => {
     try {
-      const response = await sectionsAPI.list(notebookId);
+      const response = await dataAPI.sections.list(notebookId);
       setSections(response.data);
     } catch (error) {
       console.error('Failed to load sections:', error);
@@ -74,7 +76,7 @@ export function Sidebar() {
 
   const loadPages = async (sectionId: number) => {
     try {
-      const response = await pagesAPI.list(sectionId);
+      const response = await dataAPI.pages.list(sectionId);
       setPages(response.data);
     } catch (error) {
       console.error('Failed to load pages:', error);
@@ -85,12 +87,13 @@ export function Sidebar() {
     if (!currentWorkspace || !newNotebookName.trim() || isCreatingNotebook) return;
     setIsCreatingNotebook(true);
     try {
-      const response = await notebooksAPI.create(currentWorkspace.id, newNotebookName);
+      const response = await dataAPI.notebooks.create(currentWorkspace.id, newNotebookName);
       addNotebook(response.data);
       setNewNotebookName('');
       setShowNewNotebook(false);
     } catch (error) {
       console.error('Failed to create notebook:', error);
+      alert('Failed to create notebook. Please try again.');
     } finally {
       setIsCreatingNotebook(false);
     }
@@ -103,7 +106,7 @@ export function Sidebar() {
 
   const handleSectionCreate = async (name: string, notebookId: string) => {
     try {
-      const response = await sectionsAPI.create(parseInt(notebookId), name);
+      const response = await dataAPI.sections.create(parseInt(notebookId), name);
       addSection(response.data);
       const newExpanded = new Set(expandedNotebooks);
       newExpanded.add(parseInt(notebookId));
@@ -113,6 +116,7 @@ export function Sidebar() {
       }
     } catch (error) {
       console.error('Failed to create section:', error);
+      alert('Failed to create section. Please try again.');
     }
   };
 
@@ -120,11 +124,12 @@ export function Sidebar() {
     if (isCreatingPage) return;
     setIsCreatingPage(true);
     try {
-      const response = await pagesAPI.create(sectionId, 'Untitled');
+      const response = await dataAPI.pages.create(sectionId, 'Untitled');
       addPage(response.data);
       setCurrentPage(response.data);
     } catch (error) {
       console.error('Failed to create page:', error);
+      alert('Failed to create page. Please try again.');
     } finally {
       setIsCreatingPage(false);
     }

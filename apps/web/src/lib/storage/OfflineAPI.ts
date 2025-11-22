@@ -18,7 +18,10 @@ export class OfflineAPI {
     this.syncEngine = new SyncEngine(storage);
     this.searchIndex = new SearchIndex();
     
-    this.syncEngine.startAutoSync(30000);
+    const isGuestMode = localStorage.getItem('guest_mode') === 'true';
+    if (!isGuestMode) {
+      this.syncEngine.startAutoSync(30000);
+    }
     
     window.addEventListener('online', () => {
       this.isOnline = true;
@@ -78,13 +81,16 @@ export class OfflineAPI {
       const workspace: Workspace = {
         id: tempId,
         name,
-        owner_id: 0, // Will be set by server
+        owner_id: -1, // Guest mode uses -1
         created_at: new Date().toISOString(),
       };
 
       await this.storage.addWorkspace(workspace);
 
-      await this.syncEngine.queueOperation('create', 'workspace', tempId, { name });
+      const isGuestMode = localStorage.getItem('guest_mode') === 'true';
+      if (!isGuestMode) {
+        await this.syncEngine.queueOperation('create', 'workspace', tempId, { name });
+      }
 
       return { data: workspace };
     },
@@ -140,12 +146,15 @@ export class OfflineAPI {
       await this.storage.addNotebook(notebook);
       this.searchIndex.indexNotebook(notebook);
 
-      await this.syncEngine.queueOperation('create', 'notebook', tempId, {
-        workspace_id: workspaceId,
-        name,
-        color,
-        icon,
-      });
+      const isGuestMode = localStorage.getItem('guest_mode') === 'true';
+      if (!isGuestMode) {
+        await this.syncEngine.queueOperation('create', 'notebook', tempId, {
+          workspace_id: workspaceId,
+          name,
+          color,
+          icon,
+        });
+      }
 
       return { data: notebook };
     },
@@ -221,10 +230,13 @@ export class OfflineAPI {
       await this.storage.addSection(section);
       this.searchIndex.indexSection(section);
 
-      await this.syncEngine.queueOperation('create', 'section', tempId, {
-        notebook_id: notebookId,
-        name,
-      });
+      const isGuestMode = localStorage.getItem('guest_mode') === 'true';
+      if (!isGuestMode) {
+        await this.syncEngine.queueOperation('create', 'section', tempId, {
+          notebook_id: notebookId,
+          name,
+        });
+      }
 
       return { data: section };
     },
@@ -285,10 +297,13 @@ export class OfflineAPI {
       await this.storage.addPage(page);
       this.searchIndex.indexPage(page);
 
-      await this.syncEngine.queueOperation('create', 'page', tempId, {
-        section_id: sectionId,
-        title,
-      });
+      const isGuestMode = localStorage.getItem('guest_mode') === 'true';
+      if (!isGuestMode) {
+        await this.syncEngine.queueOperation('create', 'page', tempId, {
+          section_id: sectionId,
+          title,
+        });
+      }
 
       return { data: page };
     },

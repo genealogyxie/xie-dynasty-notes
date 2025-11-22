@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
-import { workspacesAPI, authAPI } from '../lib/api';
+import { authAPI } from '../lib/api';
 import { useOffline } from '../contexts/OfflineContext';
+import { useDataAPI } from '../hooks/useDataAPI';
 import { Sidebar } from '../components/Sidebar';
 import { Editor } from '../components/Editor';
 import { CommandPalette } from '../components/CommandPalette';
@@ -39,6 +40,7 @@ export function Dashboard() {
   const [dictionaryOpen, setDictionaryOpen] = useState(false);
   const [aiAssistantOpen, setAIAssistantOpen] = useState(false);
   const { dictionary, aiProvider, syncStatus } = useOffline();
+  const dataAPI = useDataAPI();
   const {
     user,
     currentPage,
@@ -98,15 +100,39 @@ export function Dashboard() {
     };
     setUser(guestUser);
 
-    const defaultWorkspace = {
-      id: -1,
-      name: 'My Workspace',
-      owner_id: -1,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    };
-    setWorkspaces([defaultWorkspace]);
-    setCurrentWorkspace(defaultWorkspace);
+    try {
+      const existingWorkspaces = await dataAPI.workspaces.list();
+      if (existingWorkspaces.data.length > 0) {
+        setWorkspaces(existingWorkspaces.data);
+        setCurrentWorkspace(existingWorkspaces.data[0]);
+      } else {
+        const workspaceResponse = await dataAPI.workspaces.create('My Workspace');
+        const defaultWorkspace = workspaceResponse.data;
+        setWorkspaces([defaultWorkspace]);
+        setCurrentWorkspace(defaultWorkspace);
+        
+        try {
+          const notebookResponse = await dataAPI.notebooks.create(defaultWorkspace.id, 'Getting Started');
+          const notebook = notebookResponse.data;
+          
+          await dataAPI.sections.create(notebook.id, 'Quick Notes');
+          console.log('Created default notebook and section for guest mode');
+        } catch (error) {
+          console.error('Failed to create default notebook/section:', error);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to initialize guest mode:', error);
+      const defaultWorkspace = {
+        id: -1,
+        name: 'My Workspace',
+        owner_id: -1,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      setWorkspaces([defaultWorkspace]);
+      setCurrentWorkspace(defaultWorkspace);
+    }
   };
 
   const loadUser = async () => {
@@ -121,7 +147,7 @@ export function Dashboard() {
 
   const loadWorkspaces = async () => {
     try {
-      const response = await workspacesAPI.list();
+      const response = await dataAPI.workspaces.list();
       setWorkspaces(response.data);
       if (response.data.length > 0) {
         setCurrentWorkspace(response.data[0]);
