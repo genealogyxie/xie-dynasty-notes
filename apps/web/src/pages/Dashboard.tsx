@@ -74,14 +74,40 @@ export function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
-    if (!token) {
+    const isGuestMode = localStorage.getItem('guest_mode') === 'true';
+    
+    if (!token && !isGuestMode) {
       navigate('/login');
       return;
     }
 
-    loadUser();
-    loadWorkspaces();
+    if (isGuestMode) {
+      initializeGuestMode();
+    } else {
+      loadUser();
+      loadWorkspaces();
+    }
   }, []);
+
+  const initializeGuestMode = async () => {
+    const guestUser = {
+      id: -1,
+      email: 'guest@local',
+      full_name: 'Guest User',
+      created_at: new Date().toISOString(),
+    };
+    setUser(guestUser);
+
+    const defaultWorkspace = {
+      id: -1,
+      name: 'My Workspace',
+      owner_id: -1,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
+    setWorkspaces([defaultWorkspace]);
+    setCurrentWorkspace(defaultWorkspace);
+  };
 
   const loadUser = async () => {
     try {
@@ -109,6 +135,7 @@ export function Dashboard() {
   const handleLogout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('guest_mode');
     setUser(null);
     navigate('/login');
   };
@@ -246,10 +273,13 @@ export function Dashboard() {
               <Trash2 className="h-4 w-4 mr-2" />
               Recycle Bin
             </Button>
-            <span className="text-sm text-gray-600">{user.email}</span>
+            <span className="text-sm text-gray-600">
+              {user.email}
+              {localStorage.getItem('guest_mode') === 'true' && ' (Guest Mode)'}
+            </span>
             <Button variant="ghost" size="sm" onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />
-              Logout
+              {localStorage.getItem('guest_mode') === 'true' ? 'Exit Guest Mode' : 'Logout'}
             </Button>
           </div>
         </header>

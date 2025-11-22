@@ -33,6 +33,22 @@ export function Login() {
     }
   };
 
+  const handleGuestMode = () => {
+    const guestUser = {
+      id: -1,
+      email: 'guest@local',
+      full_name: 'Guest User',
+      created_at: new Date().toISOString(),
+    };
+    
+    localStorage.setItem('guest_mode', 'true');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    
+    setUser(guestUser);
+    navigate('/');
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
       <Card className="w-96">
@@ -89,6 +105,19 @@ export function Login() {
             >
               {isLogin ? 'Sign up' : 'Sign in'}
             </button>
+          </div>
+          <div className="mt-4 pt-4 border-t">
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={handleGuestMode}
+            >
+              Continue as Guest (Offline Mode)
+            </Button>
+            <p className="mt-2 text-xs text-gray-500 text-center">
+              Use the app without an account. All data stored locally on your device.
+            </p>
           </div>
         </CardContent>
       </Card>
